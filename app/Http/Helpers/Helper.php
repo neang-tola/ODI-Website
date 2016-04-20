@@ -43,7 +43,7 @@ class Helper{
    		}
 	    if(!empty($result)){
 	    	foreach($result as $trc){
-	    		$url_datail = 'training-course-detail-'.$trc->trc_id.'-'.Helper::encode_title($trc->trc_title);
+	    		$url_datail = '/training-course-detail-'.$trc->trc_id.'-'.Helper::encode_title($trc->trc_title);
                 $print_result .= '
 							<tr>
 								<td>'. ++$start .'</td>
@@ -189,7 +189,7 @@ class Helper{
    		}
 	    if(!empty($result)){
 	    	foreach($result as $job){
-	    		$url_detail = $job->job_id.'-'.Helper::encode_title($job->job_title);
+	    		$url_detail = '/job-detail-'.$job->job_id.'-'.Helper::encode_title($job->job_title);
                 $print_result .= '
 							<tr>
 								<td>'. ++$start .'</td>
@@ -203,7 +203,7 @@ class Helper{
                 $print_result_m .= '
 							<li class="mobile-body-list">
 								<div class="course">
-									<span><b>Position</b>: <a href="/job-detail-'. $url_detail .'">'. $job->job_title .'</a></span>
+									<span><b>Position</b>: <a href="'. $url_detail .'">'. $job->job_title .'</a></span>
 									<span><b>category</b>: '. $job->cat_name .'</span>						
 									<span><b>Close Date</b>: '. date('d F, Y', strtotime($job->close_date)) .'</span>						
 									<span><b>Location</b>: '. $job->loc_name .'</span>						
@@ -642,5 +642,124 @@ class Helper{
 		if(!empty($gallery))
 			return $gallery;
 	}
-}
+
+	public static function templateAlertTraining($result=array(), $receiver_name=null, $training_date=null, $url=null)
+	{
+		$print_tmp  = '';
+		$ind		= 0;
+		if(!empty($result)){
+
+			foreach($result as $row){
+				$url_datail = $url.'/training-course-detail-'.$row->trc_id.'-'.Helper::encode_title($row->trc_title);
+				$print_tmp .= '
+					<tr>
+						<td style="border: 1px solid #dddddd; text-align:center; padding: 7px 5px;">'. ++$ind .'</td>
+						<td style="border: 1px solid #dddddd; padding: 5px"><a href="'. $url_datail .'" target="_blank">'. $row->trc_title .'</a></td>
+						<td style="border: 1px solid #dddddd; text-align:center; padding: 7px 5px;">'. Helper::training_date($row->started_from, $row->started_to) .'</td>
+						<td style="border: 1px solid #dddddd; text-align:center; padding: 7px 5px;">'. $row->trc_duration .'</td>
+						<td style="border: 1px solid #dddddd; text-align:center; padding: 7px 5px;">'. $row->trc_language .'</td>
+						<td style="border: 1px solid #dddddd; text-align:center; padding: 7px 5px;">$ '. $row->trc_price .'</td>
+					</tr>
+				';
+			}
+
+			$print_result = '
+				<p style="font-family: Cambria, Georgia, serif; font-size: 16px color: #333;"><strong>Dear '. $receiver_name .'</strong></p>
+				<p style="font-family: Cambria, Georgia, serif; font-size: 14px color: #333;">Warmest greeting from ODI Asia!</p>
+				 
+				<p style="font-family: Cambria, Georgia, serif; font-size: 14px color: #333;">Are you looking for practical training courses on business and leadership skills?<br/>
+				We are pleased to share with you our upcoming training courses in <strong>'. $training_date .'</strong>.</p>
+				 
+				<p style="font-family: Cambria, Georgia, serif; font-size: 14px color: #333;">Feel free to contact us if you are interested in any course, our training team is looking forward to answer your inquiry and help you to understand how you will benefit from the courses.</p>
+				<h2 style="text-align:center; color:#00ADEF; ont-family: Cambria, Georgia, serif; font-size: 22px;">
+				Public Training Schedule in '. $training_date .'
+				</h2>
+				<table style="border-collapse: collapse; width:100%">
+					<tr>
+						<th style="background: #00ADEF; border: 1px solid #dddddd; color: #FFF; padding: 10px 0; text-align:center; width:5%;">No</th>
+						<th style="background: #00ADEF; border: 1px solid #dddddd; color: #FFF; padding: 10px 0; text-align:center; width:50%;">Course Title</th>
+						<th style="background: #00ADEF; border: 1px solid #dddddd; color: #FFF; padding: 10px 0; text-align:center; width:15%;">Dates</th>
+						<th style="background: #00ADEF; border: 1px solid #dddddd; color: #FFF; padding: 10px 0; text-align:center; width:10%;">Duration</th>
+						<th style="background: #00ADEF; border: 1px solid #dddddd; color: #FFF; padding: 10px 0; text-align:center; width:10%;">Language</th>
+						<th style="background: #00ADEF; border: 1px solid #dddddd; color: #FFF; padding: 10px 0; text-align:center; width:10%;">Fee</th>
+					</tr>
+				  '. $print_tmp .'
+				</table>
+
+				<p style="font-family: Cambria, Georgia, serif; font-size: 14px color: #333;">
+				<strong>Please click on the course title to view detail course outline.</strong>
+				</p>
+				<br/><br/>
+				<p>Best Regards,<br/>Nisay</p>
+				<br/><br/>
+				<img src="'. $url .'/public/_images/logo-odi.png" />
+				<p style="color: #00ADEF;"><strong>Ms. KONG Sennisay</strong><br/>
+				Training Department<br/>
+				Office : +855 23 722 431<br/>
+				Mobile : +855 77 333 534<br/>
+				Email : <a href="mailto:training2@odi-asia.com">training2@odi-asia.com</a><br/>
+				Website : <a href="http://www.odi-asia.com" target="_blank" style="color: #00ADEF;">www.odi-asia.com</a><br/>
+				Address : Bayon Building, 4th Floor, No. 33-34, Sangkat Monorom,
+				Khan 7 Makara, Phnom Penh, Cambodia.</p>';
+			
+
+			return $print_result;
+		}
+	}
+
+	public static function templateAlertJob($result=array(), $url=null)
+	{
+		if(!empty($result)){
+			$print_tmp = '';
+			$ind 	   = 0;
+			foreach($result as $row){
+	    		$url_detail = $url.'/job-detail-'.$row->job_id.'-'.Helper::encode_title($row->job_title);
+                $print_tmp .= '
+							<tr>
+								<td style="border: 1px solid #dddddd; text-align:center;">'. ++$ind .'</td>
+								<td style="border: 1px solid #dddddd; padding: 7px 5px;"><a href="'. $url_detail .'" target="_blank">'. $row->job_title .'</a> <sup style="color: #00ADEF">New</sup></td>
+								<td style="border: 1px solid #dddddd; text-align:center; padding: 7px 5px;">'. date('d F, Y', strtotime($row->close_date)) .'</td>
+								<td style="border: 1px solid #dddddd; text-align:center; padding: 7px 5px;">'. $row->loc_name .'</td>					
+							</tr>
+                            ';
+			}
+
+			$print_result = '
+				<p style="font-family: Cambria, Georgia, serif; font-size: 16px color: #333;">Dear Prospect candidate,</p>
+				<p style="font-family: Cambria, Georgia, serif; font-size: 14px color: #333;">Are you looking to advance your career? Many new jobs are waiting for you.</p>
+
+				<table style="border-collapse: collapse; width:100%">
+					<tr>
+						<th colspan="4" style="background: #00ADEF; border: 1px solid #00ADEF; border-bottom: 1px solid #dddddd; color: #FFF; padding: 7px 0; text-align:center; width:100%;">Job Announcement</th>
+					</tr>
+					<tr>
+						<td style="border: 1px solid #dddddd; text-align:center; padding: 10px 0;"><strong>No</strong></td>
+						<td style="border: 1px solid #dddddd; text-align:center; padding: 10px 0;"><strong>Position</strong></td>
+						<td style="border: 1px solid #dddddd; text-align:center; padding: 10px 0;"><strong>Closing Date</strong></td>
+						<td style="border: 1px solid #dddddd; text-align:center; padding: 10px 0;"><strong>Location</strong></td>
+					</tr>
+				  '. $print_tmp .'
+				</table>
+
+				<p>Click to view the detail of the job.<br/>
+				Our recruitment is happy to welcome all your questions and assist you to find your dream employer.</p>
+				</p>
+				<br/><br/>
+				<p>Best Regards,<br/>Recruitment Team</p>
+				<br/><br/>
+				<img src="'. $url .'/public/_images/logo-odi.png" />
+				<p style="color: #00ADEF;"><strong>Ms. CHEN Rany</strong><br/>
+				Recruitment Department<br/>
+				Office : +855 23 722 431<br/>
+				Mobile : +855 77 333 423 / +855 77 333 524<br/>
+				Email : <a href="mailto:recruitment@odi-asia.com">recruitment@odi-asia.com</a><br/>
+				Website : <a href="http://www.odi-asia.com" target="_blank" style="color: #00ADEF;">www.odi-asia.com</a><br/>
+				Address : Bayon Building, 4th Floor, No. 33-34, Sangkat Monorom,
+				Khan 7 Makara, Phnom Penh, Cambodia.</p>';
+			
+
+			return $print_result;
+		}
+	}
+}	
 

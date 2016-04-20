@@ -213,6 +213,15 @@ class AdminHelper{
 		return $return;
 	}
 
+	public static function controlTypeCaption()
+	{
+		$control[''] = 'Choose a Caption type';
+		$control[1]  = 'Image';
+		$control[2]	 = 'Text';
+
+		return $control;
+	}
+
 	public static function encode_title($title=null)
 	{
 		if(!empty($title)){

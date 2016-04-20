@@ -5159,3 +5159,5 @@ td.sub-border{ border-top: 1px dashed #eeeeee !important; border-bottom: 1px das
 .btn-sample{ display: inline-block; margin-right: 10px; }
 .btn-clear{ display: inline-block; }
 .margin-row{ margin: 10px 0 0 0; }
+#leftText, #leftImage, #rightText, #rightImage{ display: none; }
+#leftImage img, #rightImage img{ height: 35px; }

@@ -59,21 +59,15 @@ class BackendSlideModel extends Model
         }
     }
 
-    static function insertSlide($img_name=null, $title=null, $content=null, $position=null, $link=null)
+    static function insertSlide($insert_info=array())
     {
-    	if(!empty($img_name)){
+    	if(!empty($insert_info)){
     		$max_order = BackendSlideModel::max('img_sequense');
+            $insert_val= array('img_sequense' => $max_order + 1);
 
     		$slide = DB::table('tbl_image')
-    					->insert(['img_name'  => $img_name,
-                                  'img_title' => $title, 
-                                  'img_content'  => $content,
-                                  'img_position' => $position,
-                                  'link_to'      => $link,
-    							  'conditional_type' => 6,
-    							  'img_sequense' => $max_order + 1, 
-    							  'img_status'   => 1,
-    							  'created_at'   => date('Y-m-d H:i:s')]);
+    					->insert(array_merge($insert_val, $insert_info));
+
     		if($slide == 1)
     			return true;
     		else
@@ -81,36 +75,19 @@ class BackendSlideModel extends Model
     	}
     }
 
-    static function updateSlide($img_id=null, $img_name=null, $title=null, $content=null, $position=null, $link=null)
+    static function updateSlide($img_id=null, $insert_info=array())
     {
-        $img_arr = array();
-        if(is_numeric($img_id)){
-            if(!empty($img_name)){
-                $image   = BackendSlideModel::getOneRow($img_id);
-                if(!empty($image->img_name)){
-                    $image_path = 'public/slideshows/'.$image->img_name;
-                    @unlink($image_path);
-                }
-                $img_arr = array('img_name' => $img_name);
+        if(is_numeric($img_id)){ 
+            if(!empty($insert_info)){
+                $slide = DB::table('tbl_image')
+                            ->where('img_id', '=', $img_id)
+                            ->update($insert_info);
+
+                if($slide == 1)
+                    return true;
+                else
+                    return false;
             }
-
-            if(empty($position)){
-                $content = null;
-            }
-
-            $val_update  = array('img_title'   => $title, 
-                                 'img_content' => $content, 
-                                 'img_position'=> $position,
-                                 'link_to'     => $link,
-                                 'updated_at'  => date('Y-m-d H:i:s')); 
-
-            $slide = DB::table('tbl_image')
-                        ->where('img_id', '=', $img_id)
-                        ->update(array_merge($val_update, $img_arr));
-            if($slide == 1)
-                return true;
-            else
-                return false;
         }
     }
 
@@ -120,7 +97,17 @@ class BackendSlideModel extends Model
             $image   = BackendSlideModel::getOneRow($img_id);
             
             if(!empty($image->img_name)){
-                $image_path = 'public/slideshows/'.$image->img_name;
+                $slide_path = 'public/slideshows/'.$image->img_name;
+                @unlink($slide_path);
+            }
+
+            if($image->img_position_l == 1){
+                $image_path = 'public/slideshows/'.$image->img_content_l;
+                @unlink($image_path);
+            }
+
+            if($image->img_position_r == 1){
+                $image_path = 'public/slideshows/'.$image->img_content_r;
                 @unlink($image_path);
             }
         }
@@ -160,6 +147,18 @@ class BackendSlideModel extends Model
               @unlink($pathImage.'/'.$fileName);
 
               return $new_slide;
+        }
+    }
+
+    static function uploadImage($image=null, $pathImage=null)
+    {
+        if(!empty($image)){
+
+              $extension = $image->getClientOriginalExtension(); // getting image extension
+              $fileName  = rand(11111111, 99999999).'.'.$extension; // renameing image
+              $image->move($pathImage, $fileName); // uploading file to given path
+
+              return $fileName;
         }
     }
 

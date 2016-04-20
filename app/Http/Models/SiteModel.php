@@ -86,7 +86,7 @@ class SiteModel extends Model
     	$print_slide  = '';
     	$ind 		  = 0;
 	    $slideshow    = DB::table('tbl_image')
-	    				->select('img_name', 'img_title', 'img_content', 'img_position', 'link_to')
+	    				->select('img_name', 'img_title', 'img_content_l', 'img_position_l', 'img_content_r', 'img_position_r', 'link_to')
 	    				->where('img_status', 1)
 	    				->get();
 
@@ -100,14 +100,22 @@ class SiteModel extends Model
 			    		$link_img   = '<img src="'. url('public/slideshows/'.$img->img_name) .'" alt="'. $img->img_title .'">';
 			    	}
 
-					$cls_post    = Helper::getPositionClass($img->img_position);
-
 		    		$slide_list .= '
-			        <div class="item active">
-			        	'. $link_img .'
-			            <div class="carousel-caption '.$cls_post.'">
-			            	'. $img->img_content .'
-			            </div>
+			        <div class="item active" style="background: url('. url('public/slideshows/'.$img->img_name) .')">
+			        	<div class="container">
+				        	<div class="row">
+						        <div class="col-sm-6">
+						        	<div class="carousel-caption">
+						        		'. $img->img_content_l .'
+						        	</div>
+						        </div>
+						        <div class="col-sm-6">
+						            <div class="carousel-caption">
+						            	'. $img->img_content_r .'
+						            </div>
+						        </div>
+					        </div>
+				        </div>
 			        </div>';
 
 		    	}else{
@@ -143,7 +151,7 @@ class SiteModel extends Model
 
     	$ind 		  = 0;
 	    $slideshow    = DB::table('tbl_image')
-	    				->select('img_name', 'img_title', 'img_content', 'img_position', 'link_to')
+	    				->select('img_name', 'img_title', 'img_content_l', 'img_position_l', 'img_content_r', 'img_position_r', 'link_to')
 	    				->where('img_status', 1)
 	    				->get();
 
@@ -155,15 +163,23 @@ class SiteModel extends Model
 			    	}else{
 			    		$link_img   = '<img src="'. url('public/slideshows/'.$img->img_name) .'" alt="'. $img->img_title .'">';
 			    	}
-
-		    		$cls_post    = Helper::getPositionClass($img->img_position);
 		    		// slideshow
 		    		$slide_list .= '
-			        <div class="item">
-			        	'. $link_img .'
-			            <div class="carousel-caption '.$cls_post.'">
-			            	'. $img->img_content .'
-			            </div>
+			        <div class="item" style="background: url('. url('public/slideshows/'.$img->img_name) .')">
+			        	<div class="container">
+				        	<div class="row">
+						        <div class="col-sm-6">
+						        	<div class="carousel-caption">
+						        		'. $img->img_content_l .'
+						        	</div>
+						        </div>
+						        <div class="col-sm-6">
+						            <div class="carousel-caption">
+						            	'. $img->img_content_r .'
+						            </div>
+						        </div>
+					        </div>
+				        </div>
 			        </div>';
 		    	}
 
@@ -245,7 +261,7 @@ class SiteModel extends Model
 	{
 		if(!empty($alias)){
 			$content = DB::table('tbl_menu as m')
-						   ->select('m.m_id', 'm.cnt_id', 'm.block_search', 'ct.ctt_title', 'ct.ctt_des', 'c.meta_key', 'c.meta_des', 'c.con_plus', 'c.con_remark', 'c.gal_id', 'i.img_name', 'i.img_position', 'i.img_content')
+						   ->select('m.m_id', 'm.cnt_id', 'm.block_search', 'ct.ctt_title', 'ct.ctt_des', 'c.meta_key', 'c.meta_des', 'c.con_plus', 'c.con_remark', 'c.gal_id', 'i.img_name', 'i.img_position_l', 'i.img_content_l', 'i.img_position_r', 'i.img_content_r')
 						   ->join('tbl_menu_translate as mt', function($join) use ($lang_id){
 						   		$join->on('mt.m_id', '=', 'm.m_id');
 						   		$join->on('mt.lang_id', '=', DB::raw($lang_id));

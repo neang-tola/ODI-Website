@@ -90,11 +90,13 @@ class BackendSlideshowController extends Controller
     public function store(Request $request)
     {
         extract($request->input());
-        $msg     = '';
-        $image   = $request->file('slideImage');
+        $content_left = array();
+        $content_right= array();
+        $msg          = '';
+        $image        = $request->file('slideImage');
 
-        $rules   = array('slide' => 'required|mimes:png,gif,jpeg');
-        $validator = Validator::make(array('slide'=> $image), $rules);
+        $rules        = array('slide' => 'required|mimes:png,gif,jpeg');
+        $validator    = Validator::make(array('slide'=> $image), $rules);
 
           if ($validator->fails()) {
             // send back to the page with the input data and errors
@@ -107,8 +109,42 @@ class BackendSlideshowController extends Controller
               if(empty($img_slide)){
                 $msg = '<div class="alert alert-danger" role="alert">Slideshow have been added <b>fail</b></div>';
               }else{ 
+
+                if(!empty($leftCaption)){
+                  if($leftCaption == 1){
+
+                    $l_image   = Slide::uploadImage($request->file('leftImageCaption'), 'public/slideshows');
+                    if(!empty($l_image))
+                    { $l_content = '<img src="/public/slideshows/'.$l_image.'" />'; }
+
+                  }else{
+                    $l_content = $leftTextCaption;
+                  }
+                  
+                  $content_left = array('img_position_l' => $leftCaption, 'img_content_l' => @$l_content);
+                }
+
+                if(!empty($rightCaption)){
+                  if($rightCaption == 1){
+                    $r_image   = Slide::uploadImage($request->file('rightImageCaption'), 'public/slideshows');
+                    if(!empty($r_image))
+                    { $r_content = '<img src="/public/slideshows/'.$r_image.'" />'; }
+    
+                  }else{
+                    $r_content = $rightTextCaption;
+                  }
+                  
+                  $content_right = array('img_position_r' => $rightCaption, 'img_content_r' => @$r_content);
+                }
+          
+                $insert_val= array('img_name'      => $img_slide,
+                                    'img_title'    => $slideTitle, 
+                                    'link_to'      => $slideLink,
+                                    'conditional_type' => 6,
+                                    'img_status'   => 0,
+                                    'created_at'   => date('Y-m-d H:i:s'));
                 // sending back with message
-                Slide::insertSlide($img_slide, $slideTitle, $slideCaption, $slidePosition, $slideLink);
+                Slide::insertSlide(array_merge($insert_val, $content_left, $content_right));
                 $msg = '<div class="alert alert-success" role="alert">Slideshow have been added <b>successful</b></div>'; 
               }
             }
@@ -134,7 +170,25 @@ class BackendSlideshowController extends Controller
         $data['chk_validat']    = 'return isValidate_update_slideshow()';
         $data['info']           = Slide::getOneRow($slide_id);
         $data['ctrl_link']      = Slide::controlLink();
+        if($data['info']->img_position_l == 1){
+          $data['optional_img_l'] = 'style="display:block;"';
+          $data['content_img_l']  = $data['info']->img_content_l;
+        }
 
+        if($data['info']->img_position_l == 2){
+          $data['optional_txt_l'] = 'style="display:block;"';
+          $data['content_txt_l']  = $data['info']->img_content_l;
+        }
+
+        if($data['info']->img_position_r == 1){
+          $data['optional_img_r'] = 'style="display:block;"';
+          $data['content_img_r']  = $data['info']->img_content_r;
+        }
+
+        if($data['info']->img_position_r == 2){
+          $data['optional_txt_r'] = 'style="display:block;"';
+          $data['content_txt_r']  = $data['info']->img_content_r;
+        }
         return view('admin.slide_form')->with($data);
     }
 
@@ -142,13 +196,51 @@ class BackendSlideshowController extends Controller
     {
         extract($request->input());
         $msg     = '';
+        $img_arr = array();
+        $content_left = array();
+        $content_right= array();
         $image   = $request->file('slideImage');
-
                
         $img_slide = Slide::uploadSlideShow($image, 'public/slideshows');
+        if (!empty($img_slide)) {
+          $img_arr = array('img_name' => $img_slide);
+        }
 
+        if(!empty($leftCaption)){
+            if($leftCaption == 1){
+                $l_image   = Slide::uploadImage($request->file('leftImageCaption'), 'public/slideshows');
+                if(!empty($l_image))
+                $l_content = '<img src="/public/slideshows/'.$l_image.'" />';
+            }else{
+                $l_content = $leftTextCaption;
+            }
+            
+            if(!empty(@$l_content)){
+              $content_left = array('img_position_l' => $leftCaption, 'img_content_l' => @$l_content);
+            }
+        }
+
+        if(!empty($rightCaption)){
+            if($rightCaption == 1){
+
+                $r_image   = Slide::uploadImage($request->file('rightImageCaption'), 'public/slideshows');
+                if(!empty($r_image))
+                { $r_content = '<img src="/public/slideshows/'.$r_image.'" />'; }
+    
+            }else{
+                $r_content = $rightTextCaption;
+            }
+            
+            if(!empty(@$r_content)){
+              $content_right = array('img_position_r' => $rightCaption, 'img_content_r' => @$r_content);
+            }
+        }
+
+        $val_update = array('img_title'   => $slideTitle, 
+                            'link_to'     => $slideLink,
+                            'updated_at'  => date('Y-m-d H:i:s'));
                 // sending back with message
-        $slideshow = Slide::updateSlide($slideId, $img_slide, $slideTitle, $slideCaption, $slidePosition, $slideLink);
+        $slideshow = Slide::updateSlide($slideId, array_merge($val_update, $content_left, $content_right, $img_arr));
 
         if($slideshow == true){
             $msg = '<div class="alert alert-success" role="alert">Slideshow have been updated <b>successful</b></div>'; 

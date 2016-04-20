@@ -3,8 +3,19 @@
 	@if(!empty(@$content->img_name))
 	    <div class="banner">
 			<img src="/public/slideshows/{{ $content->img_name }}" alt="{{ $content->img_name }}" class="img-responsive" />
-			<div class="carousel-caption {{ Helper::getPositionClass($content->img_position) }}">
-				{!!$content->img_content !!}
+			<div class="carousel-caption">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="carousel-caption">
+							{!! $content->img_content_l !!}
+						</div>
+					</div>
+					<div class="col-sm-6">
+					   <div class="carousel-caption">
+					      	{!! $content->img_content_r !!}
+						</div>
+					</div>
+				</div>
 			</div>
 	      </div>
 	    </div><!-- /.banner -->
