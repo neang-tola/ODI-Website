@@ -72,4 +72,18 @@ class BackendController extends Controller
     	}
     	
     }
+
+    public function emailSetting()
+    {
+        $data['title']          = 'Email Setting';
+        $data['breadcrumb']     = AdminHelper::breadcrumb([route('admin.manage.email') => 'Email Setting']);
+        $data['heading_title']  = 'Config Email Setting';
+
+        return view('admin.setting_email')->with($data);
+    }
+
+    public function saveSetting(Request $request)
+    {
+
+    }
 }

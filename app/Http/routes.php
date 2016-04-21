@@ -39,11 +39,13 @@ Route::group(['middleware' => 'web'], function(){
     Route::get('/odi-member-login',             ['as' => 'odi.member.login', 'uses' => 'Auth\AuthController@member_login']);
     Route::post('/member-login',                ['as' => 'check.member.login', 'uses' => 'Auth\AuthController@check_member_login']);
 
+    Route::get('/send-mail', 'MailController@index');
     Route::post('/submit-register-online',      ['as' => 'submit.register.online', 'uses' => 'HomeController@registerOnline']);
     Route::post('/submit-candidate-cv',         ['as' => 'submit.candidate.cv', 'uses' => 'HomeController@candidateCV']);
     Route::get('/job-detail-{job_id}-{job_title}',['as' => 'job.detail.page', 'uses' => 'HomeController@jobDetail']);
     Route::get('/training-course-detail-{training_id}-{training_title}', ['as' => 'training.detail.page', 'uses' => 'HomeController@trainingDetail']);
     Route::get('/{slug}',                       ['as' => 'display.page',  'uses' => 'HomeController@page']);
+
 });
 
 /* Backend Internal User */
@@ -183,4 +185,7 @@ Route::group(['prefix' => 'internal-bkn', 'middleware' => ['web','auth']], funct
     Route::post('/update-user', ['as' => 'admin.user.update', 'uses' => 'BackendUserController@update']);
     Route::post('/search-user', ['as' => 'admin.user.search', 'uses' => 'BackendUserController@search']);
     Route::get('/delete-user', ['as' => 'admin.user.delete', 'uses' => 'BackendUserController@destroy']);
+
+    Route::get('/manage-email-setting', ['as' => 'admin.manage.email', 'uses' => 'BackendController@emailSetting']);
+    Route::post('/save-email-setting',  ['as' => 'admin.save.email', 'uses' => 'BackendController@saveSetting']);
 });

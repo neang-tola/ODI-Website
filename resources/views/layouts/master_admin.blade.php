@@ -119,9 +119,14 @@
                         <i class="icon_documents_alt"></i><span>Manage Article</span>
                       </a>
         				  </li>  
-        				  <li>
-        					    <a href="{{ route('admin.contact.list') }}">
+                  <li>
+                      <a href="{{ route('admin.contact.list') }}">
                         <i class="icon_genius"></i><span>Manage Contact</span>
+                      </a>
+                  </li>                  				  
+                  <li>
+        					    <a href="{{ route('admin.manage.email') }}">
+                        <i class="icon_genius"></i><span>Email Setting</span>
                       </a>
         				  </li>           				  				  
         				  <li>
