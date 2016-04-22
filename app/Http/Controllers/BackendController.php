@@ -78,12 +78,25 @@ class BackendController extends Controller
         $data['title']          = 'Email Setting';
         $data['breadcrumb']     = AdminHelper::breadcrumb([route('admin.manage.email') => 'Email Setting']);
         $data['heading_title']  = 'Config Email Setting';
-
+        $data['info']           = DB::table('tbl_email')->select('email_job', 'email_training')->where('id', 1)->first();
         return view('admin.setting_email')->with($data);
     }
 
     public function saveSetting(Request $request)
     {
+        $email_job = $request->input('alertFromCandidate');
+        $email_training = $request->input('alertFromTrainer');
 
+        $update_val = array('email_job' => $email_job, 'email_training' => $email_training);
+
+        $update    = DB::table('tbl_email')->where('id', 1)->update($update_val);
+
+        if($update == 1){
+            Session::flash('msg', '<div class="alert alert-success" role="alert">You have been saved config email <b>Successfull</b></div>');
+        }else{
+            Session::flash('msg', '<div class="alert alert-danger" role="alert">You are failing save config email <b>Error</b></div>');
+        }
+
+        return redirect()->back();
     }
 }

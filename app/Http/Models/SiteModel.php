@@ -257,6 +257,34 @@ class SiteModel extends Model
 		return $print_partner;
 	}
 
+	static function findTrainingInfo($keyword=null)
+	{
+		if(!empty($keyword)){
+	    	$training = DB::select('SELECT DISTINCT `t`.`trc_id`, `t`.`trc_title`, `t`.`trc_price`, `t`.`trc_duration`, `t`.`started_from`, `t`.`started_to`, `t`.`trc_language`, `t`.`gal_id`
+									FROM `tbl_training_course` as `t` 
+									INNER JOIN `tbl_training_course` as `tt` on `tt`.`trc_id` = `t`.`parent_id` 
+									WHERE `t`.`trc_status` = 1 AND `t`.`parent_id` > 0 AND `t`.`customize` = 0 
+									AND `t`.`started_from` >= CURDATE() AND fnStripTags(`t`.`trc_content`) COLLATE utf8_general_ci LIKE "%'. $keyword .'%" COLLATE utf8_general_ci 
+									ORDER BY `t`.`started_from` ASC');
+
+		
+
+/*	    	$training = DB::table('tbl_training_course as t');
+	    	$training->select('t.trc_id', 't.trc_title', 't.trc_price', 't.trc_duration', 't.started_from', 't.started_to', 't.trc_language', 't.gal_id');
+            $training->join('tbl_training_course as tt', 'tt.trc_id', '=', 't.parent_id');
+	    	
+            $training->where('t.trc_status', '=', 1);
+            $training->where('t.parent_id', '>', 0);
+            $training->where('t.customize', '=', 0);
+            $training->whereRaw('t.started_from >= CURDATE()');
+            $training->whereRaw('fnStripTags(t.trc_title) = "%Law%"');
+	    	$training->orderBy('t.started_from');*/
+	    	//$result   = $training->get();
+
+	    	return $training;
+		}
+	}
+
 	static function getContent($alias=null, $lang_id=1)
 	{
 		if(!empty($alias)){

@@ -78,14 +78,7 @@ class HomeController extends Controller
         }
 
         $data['partner_logo']   = MySite::getPartner();
-
-/*        if(Session::has('file_down')){
-            if(Session::get('role') == 4){
-                $file    = "./public/files/". Session::get('file_down');
-                Session::forget('file_down');
-                return Response::download($file);
-            }
-        }*/
+       
         return view('site.page')->with($data);
     }
 
@@ -192,5 +185,13 @@ class HomeController extends Controller
         Session::flash('msg', $msg);
 
         return redirect()->back();
+    }
+
+    public function searchContent(Request $request)
+    {
+/*        $keyword = $request->input('search');
+        $training= MySite::findTrainingInfo($keyword);
+        
+        dd($training);*/
     }
 }

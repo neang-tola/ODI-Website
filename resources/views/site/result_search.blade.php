@@ -17,11 +17,10 @@
 				 <div class="col-lg-4 col-md-4 col-sm-4">
 				 	
 				 	<div class="search-block">
-				 		<form action="{{ route('find.result') }}" method="post" autocomplete="off" id="search_form">
-					 		<input type="text" name="search" id="search" placeholder="Search" class="pull-left"/>
+				 		<form class="" action="#" method="post">
+					 		<input type="text" placeholder="Search" class="pull-left"/>
 					 		<button type="submit" class="pull-right"><i class="fa fa-search fa-2x"></i></button>
 					 		<div class="clearfix"></div>
-					 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				 		</form>
 				 	</div>
 					<div class="download-block">
@@ -35,11 +34,8 @@
 
 @section('main_content')
 	<div class="container">
-		<div class="row banner-block">
-			<img src="/public/_images/banner.png" alt="Banner" />
-		</div>
 		<div class="row">
-			{!! Helper::templateTrainingCourse(0, $training_info, $training_info->render()) !!}					        
+							        
 		</div>
 	</div>	
 @endsection

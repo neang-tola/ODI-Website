@@ -40,10 +40,11 @@
 				 <div class="col-lg-4 col-md-4 col-sm-4">
 				 	
 				 	<div class="search-block">
-				 		<form class="" action="#" method="post">
-					 		<input type="text" placeholder="Search" class="pull-left"/>
+				 		<form action="{{ route('find.result') }}" method="post" autocomplete="off" id="search_form">
+					 		<input type="text" name="search" id="search" placeholder="Search" class="pull-left"/>
 					 		<button type="submit" class="pull-right"><i class="fa fa-search fa-2x"></i></button>
 					 		<div class="clearfix"></div>
+					 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				 		</form>
 				 	</div>
 					<div class="download-block">
@@ -67,17 +68,6 @@
 		<div class="clear-space">
 			<div class="address-contents">
 				{!! @$content->ctt_des !!}
-			{{--
-				<ul class="info-odi">
-					<li><i class="fa fa-home"></i> : <span>Bayoun Building 4th Floor, No. 33-34, George Dimitrov (St.114), <br>Sangkat Monorom, Khan 7 Makara, 12251 Phnom Penh, Cambodia.</span></li>
-					<li><i class="fa fa-phone"></i> : <span>(855) 23 722 431</span></li>
-					<li><i class="fa fa-mobile"></i> : <span>(855) 77 333 423 / (855) 77 333 424 (Recruitment & Selection),</span></li>
-					<li><i class="fa fa-mobile"></i> : <span>(855) 77 333 534 (Training & Development),</span></li>
-					<li><i class="fa fa-mobile"></i> : <span>(855) 12 754 744 (HR Consulting)</span></li>
-					<li><i class="fa fa-envelope-o"></i> : <span>odi@odi-asia.com</span></li>
-					<li><i class="fa fa-globe"></i> : <span>www.odi-asia.com</span></li>
-				</ul>			
-			--}}
 			</div>	
 		</div>	
 	</div>

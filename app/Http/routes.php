@@ -39,9 +39,13 @@ Route::group(['middleware' => 'web'], function(){
     Route::get('/odi-member-login',             ['as' => 'odi.member.login', 'uses' => 'Auth\AuthController@member_login']);
     Route::post('/member-login',                ['as' => 'check.member.login', 'uses' => 'Auth\AuthController@check_member_login']);
 
-    Route::get('/send-mail', 'MailController@index');
+    Route::get('/send-mail',                    ['as' => 'send.mail', 'uses' => 'MailController@index']);
+    Route::get('/alert-job',                    ['as' => 'alert.job', 'uses' => 'MailController@sendJobAlert']);
+    Route::get('/alert-training',               ['as' => 'alert.training', 'uses' => 'MailController@sendTrainingAlert']);
+
     Route::post('/submit-register-online',      ['as' => 'submit.register.online', 'uses' => 'HomeController@registerOnline']);
     Route::post('/submit-candidate-cv',         ['as' => 'submit.candidate.cv', 'uses' => 'HomeController@candidateCV']);
+    Route::post('/odi-finding-result',          ['as' => 'find.result', 'uses' => 'HomeController@searchContent']);
     Route::get('/job-detail-{job_id}-{job_title}',['as' => 'job.detail.page', 'uses' => 'HomeController@jobDetail']);
     Route::get('/training-course-detail-{training_id}-{training_title}', ['as' => 'training.detail.page', 'uses' => 'HomeController@trainingDetail']);
     Route::get('/{slug}',                       ['as' => 'display.page',  'uses' => 'HomeController@page']);
