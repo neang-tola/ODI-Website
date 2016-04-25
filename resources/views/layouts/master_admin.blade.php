@@ -119,14 +119,9 @@
                         <i class="icon_documents_alt"></i><span>Manage Article</span>
                       </a>
         				  </li>  
-                  <li>
-                      <a href="{{ route('admin.contact.list') }}">
-                        <i class="icon_phone"></i><span>Manage Contact</span>
-                      </a>
-                  </li>                  				  
-                  <li>
-        					    <a href="{{ route('admin.manage.email') }}">
-                        <i class="icon_mail_alt"></i><span>Email Setting</span>
+        				  <li>
+        					    <a href="{{ route('admin.contact.list') }}">
+                        <i class="icon_genius"></i><span>Manage Contact</span>
                       </a>
         				  </li>           				  				  
         				  <li>
@@ -136,7 +131,7 @@
         				  </li>		  
                   <li>
                       <a href="{{ route('admin.gallery.list') }}">
-                        <i class="icon_image"></i><span>Manage Gallery</span>
+                        <i class="icon_table"></i><span>Manage Gallery</span>
                       </a>
                   </li>        				  
                   <li>
@@ -146,7 +141,7 @@
         				  </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_folder-alt"></i>
+                          <i class="icon_documents_alt"></i>
                           <span>Resources</span>
                         @if(empty($resource_drop))
                           <span class="menu-arrow arrow_carrot-right"></span>
@@ -161,7 +156,7 @@
                   </li>                  
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_bag"></i>
+                          <i class="icon_documents_alt"></i>
                           <span>Training</span>
                         @if(empty($training_drop))
                           <span class="menu-arrow arrow_carrot-right"></span>

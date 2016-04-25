@@ -104,7 +104,6 @@ class BackendArticleModel extends Model
     	$slideshow = DB::table('tbl_image')
     					->select('img_id', 'img_title')
     					->where('conditional_type', 6)
-                        ->orderBy('img_title')
     					->get();
 
     	if(!empty($slideshow)){

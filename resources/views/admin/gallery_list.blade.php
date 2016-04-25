@@ -36,7 +36,7 @@
                               @if($gal->gal_status == 0)
                                   <td><span class="status-g" id="status-{{ $gal->gal_id }}-1"><i class="inactive-button"></i></span></td>
                               @else
-                                  <td><span class="status" id="status-{{ $gal->gal_id }}-0"><i class="active-button"></i></span></td>
+                                  <td><span class="status-g" id="status-{{ $gal->gal_id }}-0"><i class="active-button"></i></span></td>
                               @endif
                                   <td><i class="gallery-add-button" id="gallery-{{ $gal->gal_id }}"></i></td>
                                   <td><i class="edit-button" id="edit-{{ $gal->gal_id }}"></i></td>

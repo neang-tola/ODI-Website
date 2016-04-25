@@ -196,7 +196,6 @@ class BackendGalleryController extends Controller
         $gal_status  = explode('-', Input::get('gid'));
    
         if(count($gal_status) == 2){
-            Gallery::updateStatus();
             $gallery = Gallery::where('gal_id', '=', $gal_status[0])
                        ->update(['gal_status' => $gal_status[1]]);
 

@@ -16,6 +16,7 @@
     <!-- Bootstrap core CSS -->
     {!! HTML::style('public/site/css/font-awesome.css') !!}
     {!! HTML::style('public/site/css/bootstrap.min.css') !!}
+    {!! HTML::style('public/site/css/style.bxSlider.css') !!}
 
     {!! HTML::script('public/site/js/ie-emulation-modes-warning.js') !!}
     {!! HTML::style('public/site/css/odi-site.css') !!}
@@ -39,13 +40,16 @@
 		<!-- Row partner -->
 		<div class="show-partner">
 			<div class="container-fluid">
+        <div class="row">
             {!! @$partner_logo !!}
+        </div>
+
 			</div>
 		</div>
 	
 	<div class="bottom-block">
 		<div class="container">
-			<h3 class="company-footer">ODI Asia Co., Ltd.</h3>			
+			<!-- <h3 class="company-footer">ODI Asia Co., Ltd.</h3>			 -->
 			<ul class="info-odi pull-left">
 				<li><i class="fa fa-home"></i>: <span>Bayon Building 4th Floor, No. 33-34, George Dimitrov (St.114), <br>Sangkat Monorom, Khan 7 Makara, 12251 Phnom Penh, Cambodia.</span></li>
 				<li><img src="{{ URL::asset('public/_images/phone-footer.png') }}" alt="phone" width="18"> : <span>(855) 23 722 431</span></li>
@@ -57,12 +61,13 @@
 				<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
 			</ul>
       <div class="clearfix"></div>
-      <p class="pull-right copyright">Copyright &copy; ODI Asia Co., Ltd. All rights reserved.</p>			
+      		
 		</div>	
 	</div>
-
+  <div class="container"><p class="text-center copyright">Copyright &copy; ODI Asia Co., Ltd. All rights reserved.</p></div>
     {!! HTML::script('public/site/js/jquery.min.js') !!}
     {!! HTML::script('public/site/js/bootstrap.min.js') !!}
+    {!! HTML::script('public/site/js/jquery.bxSlider.js') !!}
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     {!! HTML::script('public/site/js/holder.min.js') !!}
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

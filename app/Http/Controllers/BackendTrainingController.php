@@ -128,7 +128,6 @@ class BackendTrainingController extends Controller
                             'customize'    => $trainingCustomize,
                             'trc_content'  => $trainingDescription,
                             'trc_place'    => $trainingPlace,
-                            'gal_id'       => $trainingGallery,
                             'created_at'   => date('Y-m-d H:i:s'));
         
         if($trainingCustomize == 0){
@@ -291,7 +290,6 @@ class BackendTrainingController extends Controller
                             'parent_id'    => $trainingType,
                             'customize'    => $trainingCustomize,
                             'trc_place'    => $trainingPlace,
-                            'gal_id'       => $trainingGallery,
                             'trc_content'  => $trainingDescription);
 
         if($trainingCustomize == 0){

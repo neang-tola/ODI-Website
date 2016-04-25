@@ -72,6 +72,10 @@ class Helper{
 			if(!empty($print_result)){
 				if($header == true){
 					$return_result = '
+					<div class="row banner-block">
+						<img src="/public/_images/banner.png" alt="Banner">
+					</div>
+					<div class="row">			
 					<div id="tmpTraining" class="table-responsive">
 						<div class="loading"></div>
 						<table class="table visible-lg" id="result_output">
@@ -98,6 +102,7 @@ class Helper{
 						. $print_result_m .
 					   		'<li class="mobile-footer">'.@$pagination.' </li>
 					    </ul>
+					</div>
 					</div>';
 
 					return $return_result;

@@ -30,8 +30,8 @@
 
 @section('nav_main_block')
     <div class="row nav-main-block">
-        <nav class="nav-mobile visible-xs">
-            <span class="menu-responsive"><i class="fa fa-bars"></i> Menu</span>
+        <nav class="nav-mobile visible-sm">
+            <a href="javascript:void(0);"><i class="fa fa-bars"></i> Menu</a>
         </nav>  
         <div class="container">
             <div class="row">
@@ -69,7 +69,6 @@
 @section('main_content')
     <div class="container">
         <div class="clear-space"><!-- Content -->
-            {!! Helper::templateGallery($training_info->gal_id) !!}
             {!! $training_info->trc_content !!}
         </div>
     </div>

@@ -2,14 +2,16 @@
        var val_id = $(this).attr('id');
 	   var status_id = val_id.split('-')[2];
 	   var gallery_id= val_id.split('-')[1];
-	   $('.status').attr('class', 'status-g');
-
+	   
 	   $.get('/internal-bkn/change-status-gallery?gid='+ gallery_id +'-'+ status_id, function(result){
 		   if(result == 'success'){
-		   		$('.active-button').attr('class', 'inactive-button');
-		   		$('#'+ val_id).attr('class', 'status');
-				$('#'+ val_id).find('i').attr('class', 'active-button');
-				$('#'+ val_id).attr('id', 'status-'+ gallery_id +'-0');
+			   if(status_id == 0){
+				   $('#'+ val_id).find('i').attr('class', 'inactive-button');
+				   $('#'+ val_id).attr('id', 'status-'+ gallery_id +'-1');
+			   }else{
+				   $('#'+ val_id).find('i').attr('class', 'active-button');
+				   $('#'+ val_id).attr('id', 'status-'+ gallery_id +'-0');
+			   }
 		   }
 	   });
     });

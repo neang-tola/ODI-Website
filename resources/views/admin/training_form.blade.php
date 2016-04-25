@@ -38,7 +38,7 @@
                               <div class="form-group">
                                   <label for="trainingPlace" class="control-label col-lg-2 col-md-4 col-sm-4">Venue <span class="required">*</span></label>
                                   <div class="col-lg-6 col-md-4 col-sm-4">
-                                    <input id="trainingPlace" class="form-control" name="trainingPlace" value="{{ @$info->trc_place }}" />
+                                    <input id="trainingPlace" class="form-control" name="trainingPlace" />
                                   </div>
                                   <div class="col-lg-4 col-md-4 col-sm-4">
                                     <span class="error" id="err_place"></span>
@@ -47,7 +47,7 @@
                               <div class="form-group">
                                   <label for="trainingGalllery" class="control-label col-lg-2 col-md-4 col-sm-4">Gallery </label>
                                   <div class="col-lg-6 col-md-4 col-sm-4">
-                                    {!! Form::select('trainingGallery', AdminHelper::controlGallery(), @$info->gal_id, ['class' => 'form-control chosen-select', 'id' => 'trainingGallery', 'data-placeholder'=>'Choose a Gallery']) !!}
+                                    <input id="trainingGallery" class="form-control" name="trainingGallery" />
                                   </div>
                               </div>
                               <div class="form-group">

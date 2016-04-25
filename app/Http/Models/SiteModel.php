@@ -71,7 +71,7 @@ class SiteModel extends Model
 				 		</li>'; 
 	    	}
 
-	    	$print_menu = '<ul class="box-menu">'
+	    	$print_menu = '<ul class="box-menu clearbox">'
 	    					.$menu_list.
 	    				  '</ul>';
 	    }
@@ -101,16 +101,16 @@ class SiteModel extends Model
 			    	}
 
 		    		$slide_list .= '
-			        <div class="item active" style="background: url('. url('public/slideshows/'.$img->img_name) .')">
+			        <div class="item active" style="background: url('. url('public/slideshows/'.$img->img_name) .');">
 			        	<div class="container">
 				        	<div class="row">
-						        <div class="col-sm-6">
-						        	<div class="carousel-caption">
+						        <div class="col-sm-6 caption-text">
+						        	<div class="">
 						        		'. $img->img_content_l .'
 						        	</div>
 						        </div>
-						        <div class="col-sm-6">
-						            <div class="carousel-caption">
+						        <div class="col-sm-6 caption-img">
+						            <div class="">
 						            	'. $img->img_content_r .'
 						            </div>
 						        </div>
@@ -133,12 +133,8 @@ class SiteModel extends Model
 	    	
 	    	$print_slide .= '
 			    <div id="mySlider" class="carousel slide" data-ride="carousel">
-			      <div class="carousel-inner" role="listbox">'
-			      . $slide_list .
-			      '</div>
-				      <ol class="carousel-indicators carousel-indicators-text">'
-				      . $nav_list .   
-				     '</ol>
+			      <div class="carousel-inner" role="listbox">'. $slide_list .'</div>
+				  <ol class="carousel-indicators carousel-indicators-text">'. $nav_list .'</ol>
 			    </div>';
 	    	
 	    }
@@ -168,13 +164,13 @@ class SiteModel extends Model
 			        <div class="item" style="background: url('. url('public/slideshows/'.$img->img_name) .')">
 			        	<div class="container">
 				        	<div class="row">
-						        <div class="col-sm-6">
-						        	<div class="carousel-caption">
+						        <div class="col-sm-6 caption-text">
+						        	<div class="">
 						        		'. $img->img_content_l .'
 						        	</div>
 						        </div>
-						        <div class="col-sm-6">
-						            <div class="carousel-caption">
+						        <div class="col-sm-6 caption-img">
+						            <div class="">
 						            	'. $img->img_content_r .'
 						            </div>
 						        </div>
@@ -229,60 +225,21 @@ class SiteModel extends Model
 				}			
 
 				$partner_list .= '
-					            <div class="item '.$active.'">
-                                    <div class="col-md-2">
-                                        <img src="' .url('public/gallery/thumb/'.$partner->img_name) .'" class="img-responsive center-block" alt="'. $partner->gal_title .'-'. $i .'"/>
-                                    </div>
-                                </div>
+	            <li>
+                 <img src="' .url('public/gallery/thumb/'.$partner->img_name) .'" class="img-responsive center-block" alt="'. $partner->gal_title .'-'. $i .'"/>
+             	</li>
 				';
 				$i++;
 			}
 
 			$print_partner = '
-					<div id="partner_logo" class="carousel fdi-Carousel slide visible-lg">
-                        <div class="carousel fdi-Carousel slide" id="eventCarousel" data-interval="0">
-                            <div class="carousel-inner onebyone-carosel">'
-                            . $partner_list .
-                           '</div>
-                        </div>
-                    </div>
-                    <div id="carousel-partner" class="carousel slide visible-xs" data-ride="carousel">
-                    	<div class="carousel-inner visible-xs" role="listbox">'
-                    		. @$ul_partner .
-                       '</div>
-                    </div>';
+				<div class="slider-container">
+						<ul id="slider"> '. $partner_list .'</ul>
+				</div>';
 
 		}
 
 		return $print_partner;
-	}
-
-	static function findTrainingInfo($keyword=null)
-	{
-		if(!empty($keyword)){
-	    	$training = DB::select('SELECT DISTINCT `t`.`trc_id`, `t`.`trc_title`, `t`.`trc_price`, `t`.`trc_duration`, `t`.`started_from`, `t`.`started_to`, `t`.`trc_language`, `t`.`gal_id`
-									FROM `tbl_training_course` as `t` 
-									INNER JOIN `tbl_training_course` as `tt` on `tt`.`trc_id` = `t`.`parent_id` 
-									WHERE `t`.`trc_status` = 1 AND `t`.`parent_id` > 0 AND `t`.`customize` = 0 
-									AND `t`.`started_from` >= CURDATE() AND fnStripTags(`t`.`trc_content`) COLLATE utf8_general_ci LIKE "%'. $keyword .'%" COLLATE utf8_general_ci 
-									ORDER BY `t`.`started_from` ASC');
-
-		
-
-/*	    	$training = DB::table('tbl_training_course as t');
-	    	$training->select('t.trc_id', 't.trc_title', 't.trc_price', 't.trc_duration', 't.started_from', 't.started_to', 't.trc_language', 't.gal_id');
-            $training->join('tbl_training_course as tt', 'tt.trc_id', '=', 't.parent_id');
-	    	
-            $training->where('t.trc_status', '=', 1);
-            $training->where('t.parent_id', '>', 0);
-            $training->where('t.customize', '=', 0);
-            $training->whereRaw('t.started_from >= CURDATE()');
-            $training->whereRaw('fnStripTags(t.trc_title) = "%Law%"');
-	    	$training->orderBy('t.started_from');*/
-	    	//$result   = $training->get();
-
-	    	return $training;
-		}
 	}
 
 	static function getContent($alias=null, $lang_id=1)

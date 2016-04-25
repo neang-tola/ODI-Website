@@ -1,42 +1,16 @@
 $(document).ready(function () {
-    $('#partner_logo').carousel({
-        interval: 10000
-    });
-    $('.fdi-Carousel .item').each(function () {
-        var next = $(this).next();
-        if (!next.length) {
-            next = $(this).siblings(':first');
-        }
-        next.children(':first-child').clone().appendTo($(this));
+	// partner logo
+ 	$('#slider').bxSlider({
+		ticker: true,
+		tickerSpeed: 4000,
+		tickerHover: true,
+		slideWidth: 170,
+		maxSlides: 4,
+		minSlides: 2,
+		pause : 1,
+		autoDelay: 2
 
-        if (next.next().length > 0) {
-            next.next().children(':first-child').clone().appendTo($(this));
-        }
-        else {
-            $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-        }
-        
-         if (next.next().next().length > 0) {
-            next.next().next().children(':first-child').clone().appendTo($(this));
-        }
-        else {
-            $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-        }
-        if (next.next().length > 0) {
-            next.next().children(':first-child').clone().appendTo($(this));
-        }
-        else {
-            $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-        }
-        
-         if (next.next().next().length > 0) {
-            next.next().next().children(':first-child').clone().appendTo($(this));
-        }
-        else {
-            $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-        }        
-      
-    });
+	});
 });
 
 // Touch slide
@@ -212,3 +186,8 @@ loop_background();
 }(jQuery));
 
 $('input[type=file]').customFile();
+
+
+$('.carousel').carousel({
+  interval: 10000
+})

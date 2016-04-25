@@ -93,7 +93,6 @@ class BackendArticleController extends Controller
                             'meta_key'   => $articleMetakey,
                             'meta_des'   => $articleMetades,
                             'img_id'     => $articleBanner,
-                            'gal_id'     => $articleGallery,
                             'con_plus'   => $articleAddition,
                             'created_at' => date('Y-m-d H:i:s'),
                             'updated_at' => date('Y-m-d H:i:s'));
@@ -207,7 +206,6 @@ class BackendArticleController extends Controller
                             'meta_key'   => $articleMetakey,
                             'meta_des'   => $articleMetades,
                             'img_id'     => $articleBanner,
-                            'gal_id'     => $articleGallery,
                             'con_plus'   => $articleAddition,
                             'updated_at' => date('Y-m-d H:i:s'));
 
