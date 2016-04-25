@@ -179,9 +179,4 @@ class BackendGalleryModel extends Model
 
         return $lastid;
     }
-
-    static function updateStatus()
-    {
-        $gallery = DB::table('tbl_gallery')->update(['gal_status' => 0]);
-    }
 }

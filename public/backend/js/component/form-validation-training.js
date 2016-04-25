@@ -85,18 +85,18 @@
 		if($('#trainingTitle').val() == ''){
 		  $('#trainingTitle').css('border', '1px solid red');
 		  $('#err_title').text('Training Title is required field.');
-		  return false;
+		  status = false;
 		} 
 
 		if($('#trainingFrom').val() == ''){
       $('#trainingFrom').css('border', '1px solid red');
 		  $('#err_from').text('Start From is required field.');
-		  return false;
+		  status = false;
 		}else{
       if(isDate($('#trainingFrom').val()) == false){
         $('#trainingFrom').css('border', '1px solid red');
         $('#err_from').text('Format of Date From (dd-mm-yyyy).');
-        return false;
+        status = false;
       }
     }
 
@@ -104,7 +104,7 @@
       if(isDate($('#trainingTo').val()) == false){
         $('#trainingTo').css('border', '1px solid red');
         $('#err_from').text('Format of Date To (dd-mm-yyyy).');
-        return false;
+        status = false;
       }
     }
 
@@ -112,18 +112,18 @@
         $('#trainingType').parent().find('.chosen-container-single').css('border', '1px solid red');
         $('#trainingType').parent().find('.chosen-container-single').css('border-radius', '4px');
         $('#err_type').text('Training type is the field required.');
-        return false;
+        status = false;
     }
 
     if($('#trainingPrice').val() == ''){
       $('#trainingPrice').css('border', '1px solid red');
       $('#err_price').text('Fee of course is required field.');
-      return false;
+      status = false;
     }else{
       if($.isNumeric($('#trainingPrice').val()) == false){
         $('#trainingPrice').css('border', '1px solid red');
         $('#err_price').text('Fee of course allow only Number input.');
-        return false;
+        status = false;
       }
     }
 
@@ -309,7 +309,7 @@
         my_sample += '</li>';
         my_sample += '</ul>';
   
-        my_sample += '<h3 style="color:#00ADEF;font-size:24px;font-wight:bold;">Trainer</h3>';
+        my_sample += '<h3 style="color:#00ADEF;font-size:16px;font-wight:bold;">Trainer</h3>';
         my_sample += '<p>Our trainer is an expert in Cambodia Labour Law, having worked for ';
         my_sample += 'Ministry of Labour for more than ten years. He has conducted may training ';
         my_sample += 'related to labour law to thousand workers and employees as well as employers. ';

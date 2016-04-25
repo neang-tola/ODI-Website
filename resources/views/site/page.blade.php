@@ -1,23 +1,21 @@
 @extends('layouts.master_site')
 @section('slide_banner')
 	@if(!empty(@$content->img_name))
-	    <div class="banner">
-			<img src="/public/slideshows/{{ $content->img_name }}" alt="{{ $content->img_name }}" class="img-responsive" />
-			<div class="carousel-caption">
+	    <div class="banner" style="background: url('/public/slideshows/{{ $content->img_name }}')">
+			<div class="container main-blog-content">
 				<div class="row">
-					<div class="col-sm-6">
-						<div class="carousel-caption">
+					<div class="col-sm-6 caption-text">
+						<div class="">
 							{!! $content->img_content_l !!}
 						</div>
 					</div>
-					<div class="col-sm-6">
-					   <div class="carousel-caption">
+					<div class="col-sm-6 caption-img">
+					   <div class="">
 					      	{!! $content->img_content_r !!}
 						</div>
 					</div>
 				</div>
 			</div>
-	      </div>
 	    </div><!-- /.banner -->
 	@endif
 @endsection
@@ -28,31 +26,31 @@
 	    	<span class="menu-responsive"><i class="fa fa-bars"></i> Menu</span>
 	    </nav>	
 		<div class="container">
-			<div class="row">
+			<div class="row page-content">
 			@if($content->block_search == 0)
 				<div class="col-lg-12 col-md-12 col-sm-12">
 				 	{!! @$menu !!}
 				</div>			
 			@else
-				<div class="col-lg-8 col-md-8 col-sm-8 none-pad-left none-pad-right">
+				<div class="col-lg-9 col-md-8 col-sm-8 none-pad-left none-pad-right" id="free-resource">
 				 	{!! @$menu !!}
 				 </div>
-				 <div class="col-lg-4 col-md-4 col-sm-4">
-				 	
-				 	<div class="search-block">
-				 		<form action="{{ route('find.result') }}" method="post" autocomplete="off" id="search_form">
-					 		<input type="text" name="search" id="search" placeholder="Search" class="pull-left"/>
-					 		<button type="submit" class="pull-right"><i class="fa fa-search fa-2x"></i></button>
-					 		<div class="clearfix"></div>
-					 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
-				 		</form>
-				 	</div>
-					<div class="download-block">
-						@if(Request::segment(1) == 'free-resources')
-						    <a href="#" class="down_resource"><img src="/public/_images/idownload.png" /></a>
-						@else
-							<a href="/free-resources" class="down_resource"><img src="/public/_images/download.png" /> </a>
-						@endif
+				 <div class="col-lg-3 col-md-4 col-sm-4">
+				 	<div class="clearbox">
+					 	<div class="search-block">
+					 		<form class="" action="#" method="post">
+						 		<input type="text" placeholder="Search" class="pull-left"/>
+						 		<button type="submit" class="pull-right"><i class="fa fa-search fa-2x"></i></button>
+						 		<div class="clearfix"></div>
+					 		</form>
+					 	</div>
+						<div class="download-block">
+							@if(Request::segment(1) == 'free-resources')
+							    <a href="#" class="down_resource"><img src="/public/_images/idownload.png" /></a>
+							@else
+								<a href="/free-resources" class="down_resource"><img src="/public/_images/download.png" /> </a>
+							@endif
+						</div>
 					</div>
 				 </div>
 			@endif
@@ -68,6 +66,18 @@
 		<div class="clear-space">
 			<div class="address-contents">
 				{!! @$content->ctt_des !!}
+
+			{{--
+				<ul class="info-odi">
+					<li><i class="fa fa-home"></i> : <span>Bayoun Building 4th Floor, No. 33-34, George Dimitrov (St.114), <br>Sangkat Monorom, Khan 7 Makara, 12251 Phnom Penh, Cambodia.</span></li>
+					<li><i class="fa fa-phone"></i> : <span>(855) 23 722 431</span></li>
+					<li><i class="fa fa-mobile"></i> : <span>(855) 77 333 423 / (855) 77 333 424 (Recruitment & Selection),</span></li>
+					<li><i class="fa fa-mobile"></i> : <span>(855) 77 333 534 (Training & Development),</span></li>
+					<li><i class="fa fa-mobile"></i> : <span>(855) 12 754 744 (HR Consulting)</span></li>
+					<li><i class="fa fa-envelope-o"></i> : <span>odi@odi-asia.com</span></li>
+					<li><i class="fa fa-globe"></i> : <span>www.odi-asia.com</span></li>
+				</ul>			
+			--}}
 			</div>	
 		</div>	
 	</div>
@@ -76,7 +86,7 @@
 	</div>	
 @else
 	<div class="container">
-		<div class="clear-space">
+		<div class="">
 			{!! Helper::templateGallery($content->gal_id) !!}
 			<article class="blog-article">
 				{!! @$content->ctt_des !!}

@@ -213,7 +213,6 @@ class BackendTrainingModel extends Model
                     ->select('trc_id', 'trc_title')
                     ->where('trc_status', '=', 1)
                     ->where('parent_id', '=', 0)
-                    ->orderBy('trc_title')
                     ->get();
 
         $control[''] = '';

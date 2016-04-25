@@ -108,7 +108,7 @@
                                       <button class="btn btn-primary" type="submit">Save New</button>
                                   @else
                                       <button class="btn btn-primary" type="submit">Save Change</button>
-                                      <input type="hidden" value="{{ @$info->img_id }}" name="slideId" id="slideId" />
+                                      <input type="hidden" value="{{ @$info->img_id }}" name="slideId" />
                                   @endif
                                       <button class="btn btn-default" type="reset">Cancel</button>
                                   </div>

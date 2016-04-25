@@ -31,7 +31,7 @@
                               </thead>
                               <tbody>
                         @foreach($menu_info as $menu)
-                            @if($menu->m_id == 1 || $menu->m_id == 2 || $menu->m_id == 13 || $menu->m_id == 16 || $menu->m_id == 17)
+                            @if($menu->m_id == 1 || $menu->m_id == 13 || $menu->m_id == 16 || $menu->m_id == 17)
                                 <tr>
                                   <td>{{ $ind++ }}</td>
                                   <td><span class="menu-title">{{ $menu->m_title }}</span></td>

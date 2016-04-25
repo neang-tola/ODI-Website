@@ -9,6 +9,10 @@ body {
   font-size: 16px;
 }
 .clear{clear:both;}
+.clearbox{
+	margin-right: -15px;
+	margin-left: -15px;
+}
 
 h1, h2, h3, h4, h5, h6{
 	color: #00AEEF;
@@ -99,14 +103,14 @@ h1, h2, h3, h4, h5, h6{
 -------------------------------------------------- */
 #mySlider .carousel-caption.right-text,
 .banner .carousel-caption.right-text{
-    left: 50.5%;
+    right: 0;
     padding-bottom: 0;
     padding-top: 0;
     top: 0;
 }
 #mySlider .carousel-caption.left-text,
 .banner .carousel-caption.left-text{
-    left: -10%;
+    left: 0;
     padding-bottom: 0;
     padding-top: 0;
     top: 0;
@@ -153,47 +157,76 @@ h1, h2, h3, h4, h5, h6{
 .carousel-indicators-text li{
     text-indent: 0;
     margin: 0;
-    width: 180px;
+    width: 16.66%;
     height: 40px;
     border: none;
     border-radius: 0;
     line-height: 40px;
     color: #fff;
     transition: all 0.25s ease;
+    font-size: 18px;
+    text-transform: uppercase;
 }
 
-.carousel-indicators-text li.active, .carousel-indicators-text li:hover{
+.carousel-indicators-text li.active{
     margin: 0;
-    width: 180px;
+    width: 16.66%;
     height: 40px;
     background-color: #7AC943;    
     position: relative;    
 }
-
-/* Carousel base class */
-.carousel {
-	height: 350px;
-  	margin-bottom: 0px;
+.carousel-indicators-text li:hover{
+	font-weight: 700;
 }
+/* Carousel base class */
+/*.carousel {
+	height:295px;
+  	margin-bottom: 0px;
+}*/
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
   z-index: 10;
+  bottom: 0;
 
 }
 .carousel-caption .left, .carousel-caption .right{
 	position: absolute;
 }
 /* Declare heights because of positioning of img element */
-.carousel .item {
-  height: 350px;
+/*.carousel .item {
+  height: 290px;
   color: #777;
   background-color: #FFF;
-}
+}*/
 .carousel-inner > .item > img, .carousel-inner > .item > a > img{
   top: 0;
   left: 0;
   min-width: 100%;
   height: 350px;
+}
+
+.banner-right-text{
+	right: 0;
+    padding-bottom: 0;
+    padding-top: 0;	
+}
+.banner-left-text{
+	left: 0;
+    padding-bottom: 0;
+    padding-top: 0;	
+}
+.logo-partner{
+	position: relative;
+	height: 120px;
+}
+
+.logo-partner img {
+/*  width: 50%;
+  height: 50%;*/
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
 }
 .thumbnail-img{
 	width: 54%;
@@ -214,10 +247,10 @@ h1, h2, h3, h4, h5, h6{
 .text-sliders .h1, h1{
 	font-weight: 700;
 }
-div.banner img{
+/*div.banner img{
 	width: 100%;
 	height: auto;
-}
+}*/
 .company-footer{ color: #FFF; }
 .listdown-odi ul{
 	list-style-image: url('images/list.png');
@@ -235,7 +268,9 @@ article.blog-article img{
 	margin: 10px 0 10px;
 	padding: 10px;
 }
-
+article.blog-article ul{
+	list-style-image: url('images/list.png');
+}
 .map{
 	margin-bottom: 20px;
 }
@@ -282,20 +317,21 @@ article.blog-article img{
 .nav-main-block{
 	display: block; 
 	margin: 0 0 15px 0;
-	padding: 15px 0; 
+    padding: 15px 0 0;
 	background: #e7f6fd; 
 	width: 100%; 
 	height: auto;
 }
 ul.box-menu{
 	list-style: none;
-	text-align: left;
-	padding-left: 0;
+	/*text-align: left;*/
+	padding: 0;
+	margin-top: -5px;
 }
 ul.box-menu li{
 	background: #FFF;
-	width: 125px;
-	height: 130px;
+    width: 140px;
+    height: 140px;
 	border: 1px solid #8ec63f;
 	border-radius: 4px;
 	-webkit-border-radius: 4px;
@@ -303,9 +339,20 @@ ul.box-menu li{
 	display: inline-block;	
 	text-align: center;
 	padding: 10px;
-	margin: 10px;
+	margin: 15px;
 	vertical-align: top;
 }
+#free-resource ul.box-menu li{
+	margin: 15px;
+}
+
+/*.main-blog-content{
+	position: absolute;
+	top: 0;
+	margin: 0 auto;
+	right: 0;
+	left: 0;
+}*/
 ul#training.box-menu li{
 	width: 144px;
 }
@@ -323,6 +370,9 @@ ul.box-menu li span{
 	text-transform: uppercase;
 	color: #13b1ee;
 	font-weight: bold;
+}
+ul.box-menu li:hover span{
+	color: #F6921D;
 }
 ul.box-menu li img{
 	width: 70px;
@@ -350,6 +400,7 @@ ul.info-odi li{
 }
 ul.info-odi li span{
 	display: inline-table;
+	font-weight: 100;
 }
 ul.info-odi li i{
     width: 18px;
@@ -378,8 +429,9 @@ ul.media-social-odi li:hover a{
 	transition: all 0.5s;
 }
 p.copyright{
-	color: #FFF;
-	font-size: 14px;	
+	color: #00ADEF;
+	font-size: 14px;
+	padding: 10px 0 0;	
 }
 footer{
 	margin: 20px 0 0;
@@ -387,17 +439,18 @@ footer{
 .search-block{
 	background: #00adef;
 	width: 100%;
-	height: 40px;
-	margin: 10px 0 15px 0;
+    height: 50px;
+    margin: 12px 0 25px 0;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	display: block;
-	padding: 5px;
+	padding: 8px;
+	padding-top: 10px;
 }
 .search-block input[type=text]{
 	background: #FFF;
-	width: 88%;
+	width: 86%;
 	height: 30px;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -406,7 +459,7 @@ footer{
 	border: none;
 }
 .search-block button{
-	width: 10%;
+	width: 14%;
 	background: none;
 	border: none;
 	outline: none;
@@ -422,6 +475,7 @@ footer{
 .banner{
 	position: relative;
 	overflow: hidden;
+	height: 350px;
 }
 .banner-block{
 	/*padding: 15px 20px;*/
@@ -720,7 +774,7 @@ ul.content-table-list li:last-child{
 .bottom-block{
 	background: #00adef;
 	/*padding: 15px 0;*/
-	padding: 0 0 5px;
+	padding: 11px 0 0px;
 }
 
 .btn-register{
@@ -921,7 +975,7 @@ select.frm-cv {
 		list-style: none;
 		padding: 10px;
     	background: #00ADEE;
-	    border: 1px solid #FFF;
+	    border-bottom: 1px solid #FFF;
 	   	color: #333;
 	}
 	ul.content-mobile li:first-child{ padding: 0; height: 0; background: none; }
@@ -1089,9 +1143,31 @@ ul.pagination li:last-child{ display: none; }
     background: url(images/loading.gif) no-repeat;
     position: absolute;
 }
+
+.page-content ul.box-menu li{
+	margin: 12px;
+}
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 @media (max-width: 768px) {	
+	.caption-img{
+		position: relative;
+	}
+	.caption-text{
+		background: #E5EDE0;
+		position: absolute;
+		z-index: 10;
+		bottom: 0;
+		width: 100%;
+
+	}
+	.clearbox{
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.table-responsive{
+		border: none;
+	}
 	.clear-space{
 		margin: 0;
 	}
@@ -1129,7 +1205,7 @@ ul.pagination li:last-child{ display: none; }
 		position: relative;
 		left: 0;
 		padding: 1px 0 20px;
-		background: rgba(122, 201, 67, 0.20);
+		/*background: rgba(122, 201, 67, 0.20);*/
 	}
 	.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
 	    max-width: 250%;
@@ -1140,7 +1216,8 @@ ul.pagination li:last-child{ display: none; }
 		height: auto;
 	}
 	.carousel .item{
-		height: auto;
+		height: 400px;
+		position: relative;
 	}	
 	.h1, h1 {
 	    font-size: 26px;
@@ -1218,7 +1295,8 @@ ul.pagination li:last-child{ display: none; }
 	}
 	.search-block button {
 	    width: 12%;
-	    }
+	    font-size: 12px;
+	}
 	ul.box-menu{
 		margin-bottom: 0;
 		display: none;
@@ -1228,7 +1306,7 @@ ul.pagination li:last-child{ display: none; }
 	ul.box-menu li{
 	    width: 48%;
 	    height: 150px;
-	    margin: 5px 1px 1px;
+	    margin: 5px 1px 1px !important;
 	    padding: 25px 0;
 	}
 	
@@ -1269,9 +1347,10 @@ ul.pagination li:last-child{ display: none; }
 	.carousel-indicators{
 		position: relative;
 	}
-	#mySlider .carousel-caption{
+	#mySlider div.carousel-caption{
 		left: 0;
 		right: 0;
+		
 	}	
 	.carousel-indicators{
 		bottom: 0;
@@ -1343,7 +1422,7 @@ ul.pagination li:last-child{ display: none; }
 
 @media (min-width: 992px) {
   .navbar-wrapper{
-  	padding: 35px 0;
+  	/*padding: 35px 0;*/
   	
   }
   .featurette-heading {

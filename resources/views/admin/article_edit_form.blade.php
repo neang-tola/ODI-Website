@@ -127,12 +127,6 @@
                                         {!! Form::select('articleAddition', $ctrl_additional, $info->con_plus, ['class' => 'form-control chosen-select', 'id' => 'articleAdditional', 'data-placeholder' => 'Choose a Additional Content']) !!}
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="articleGalllery" class="control-label col-lg-2 col-md-4 col-sm-4">Gallery </label>
-                                    <div class="col-lg-6 col-md-4 col-sm-4">
-                                      {!! Form::select('articleGallery', AdminHelper::controlGallery(), @$info->gal_id, ['class' => 'form-control chosen-select', 'id' => 'articleGallery', 'data-placeholder'=>'Choose a Gallery']) !!}
-                                    </div>
-                                </div>
                           {{--
                                       <div class="form-group">
                                           <label for="articleShowFront" class="control-label col-lg-2 col-md-4 col-sm-4">Show front page status </label>
