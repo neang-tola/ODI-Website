@@ -125,6 +125,7 @@ class BackendMenuController extends Controller
                                 'm_link'    => AdminHelper::encode_title($alias_link),
                                 'm_link_type'=> $menuTypeLink,
                                 'm_status'  => $menuStatus,
+                                'block_search' => $menuBlock,
                                 'cnt_id'    => $menuContentType,
                                 'con_id'    => $content_id,
                                 'enable_list'=> $list,
@@ -265,6 +266,7 @@ class BackendMenuController extends Controller
         if($menuId == 1 || $menuId == 13 || $menuId == 16 || $menuId == 17){
             $val_update  = array('m_title'   => $menuTitle[0],
                                 'm_sequense' => $menuOrder,
+                                'block_search' => $menuBlock,
                                 'enable_list'=> implode(',', $menuList),
                                 'updated_at' => date('Y-m-d H:i:s'));
         }else{
@@ -272,6 +274,7 @@ class BackendMenuController extends Controller
                                 'm_sequense' => $menuOrder,
                                 'm_link_type'=> $menuTypeLink,
                                 'm_status'   => $menuStatus,
+                                'block_search' => $menuBlock,
                                 'cnt_id'     => $menuContentType,
                                 'con_id'     => $content_id,
                                 'enable_list'=> implode(',', $menuList),

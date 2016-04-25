@@ -17,12 +17,15 @@
     	}
     });
 
+    $('#btn-upload').on('click', function(){
+    	$(this).addClass('disabled').text('Uploading . . .');
+    });
+
     $('body').on('submit', '#photo_gallery', function(e){
     	e.preventDefault();
     	var img_file = $('#photo_upload').val();
 
     	if(img_file !== ''){
-    		$('#btn-upload').addClass('disabled').text('Uploading ...');
 			$.ajax({
 				url: $(this).attr('action'), // Url to which the request is send
 				type: "POST",             // Type of request to be send, called as method

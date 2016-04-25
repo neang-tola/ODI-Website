@@ -5161,4 +5161,5 @@ td.sub-border{ border-top: 1px dashed #eeeeee !important; border-bottom: 1px das
 .margin-row{ margin: 10px 0 0 0; }
 #leftText, #leftImage, #rightText, #rightImage{ display: none; }
 #leftImage img, #rightImage img{ height: 35px; }
-.guide{ color: #007aff;}
+.guide{ color: #007aff; }
+.share-gallery{ font-size: 18px; color: #007aff; cursor: pointer; }

@@ -42,6 +42,10 @@ Route::group(['middleware' => 'web'], function(){
     Route::get('/send-mail',                    ['as' => 'send.mail', 'uses' => 'MailController@index']);
     Route::get('/alert-job',                    ['as' => 'alert.job', 'uses' => 'MailController@sendJobAlert']);
     Route::get('/alert-training',               ['as' => 'alert.training', 'uses' => 'MailController@sendTrainingAlert']);
+    Route::get('/file/share-document',          ['as' => 'share.document', 'uses' => 'ZipperController@generateLinkShare']);
+
+    Route::get('/job-alert-setting',            ['as' => 'criteria.setting', 'uses' => 'HomeController@settingAlertJob']);
+    Route::post('/save-alert-setting',          ['as' => 'save.criteria.setting', 'uses' => 'HomeController@saveAlertJob']);
 
     Route::post('/submit-register-online',      ['as' => 'submit.register.online', 'uses' => 'HomeController@registerOnline']);
     Route::post('/submit-candidate-cv',         ['as' => 'submit.candidate.cv', 'uses' => 'HomeController@candidateCV']);
@@ -123,6 +127,7 @@ Route::group(['prefix' => 'internal-bkn', 'middleware' => ['web','auth']], funct
     Route::post('/search-gallery',      ['as' => 'admin.gallery.search', 	 'uses' => 'BackendGalleryController@search']);
     Route::get('/delete-gallery',       ['as' => 'admin.gallery.delete', 	 'uses' => 'BackendGalleryController@destroy']);
     Route::get('/change-status-gallery',['as' => 'admin.gallery.status',     'uses' => 'BackendGalleryController@updateStatus']);
+    Route::get('/share-gallery',        ['as' => 'admin.gallery.share',      'uses' => 'BackendGalleryController@share']);
 
     Route::get('/add-photo-gallery/{id}',['as' => 'admin.gallery.addphoto',   'uses' => 'BackendGalleryController@addPhoto']);
     Route::post('/insert-photo-gallery', ['as' => 'admin.gallery.insert.photo','uses'=> 'BackendGalleryController@insertPhoto']);

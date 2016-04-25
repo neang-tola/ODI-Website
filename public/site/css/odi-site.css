@@ -1457,3 +1457,9 @@ ul.pagination li:last-child{ display: none; }
 .carousel-control.left{
 	background-image: linear-gradient(to right,rgba(0, 173, 239,.5) 0,rgba(0, 173, 239,.0001) 100%);
 }
+h4.result{ color: #333; font-weight: bold; }
+ul.found-result{ list-style: none; padding-left: 15px; }
+ul.found-result a{ color: #00ADEE; }
+ul.found-result a:hover{ color: #7AC943;}
+ul.found-result .content { margin-left: 30px; }
+.not-found-result, .form-setting{ margin: 50px 0; }

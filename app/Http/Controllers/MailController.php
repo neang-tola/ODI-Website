@@ -16,6 +16,8 @@ class MailController extends Controller
     	$data['Title'] = 'Here is my title';
     	$data['Email'] = 'I will express my email.' ;
 
+        echo date('H:i:s');
+        exit;
 /*    	Mail::send('templateEmail', ['data' => $data], function($mail) use ($data){
     		$mail->to('tolarainy@gmail.com', 'rainy')->from('toladev@odi-asia.com')->subject('Test mail');
     	});*/
@@ -31,6 +33,10 @@ class MailController extends Controller
     	$data['result'] = MySite::getJobInfo(30);
 
     	return view('site.template_alert_candidate')->with($data);
+/*        Mail::send('site.template_alert_candidate', $data, function($mail){
+            $mail->to(['neang.tola@gmail.com', 'phannsophourn@gmail.com'])->subject('Job Alert from ODI-Asia');
+        });*/
+
     }
 
     public function sendTrainingAlert()
@@ -42,4 +48,5 @@ class MailController extends Controller
 
     	return view('site.template_alert_trainer')->with($data);
     }
+
 }

@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="{!! trim($meta_des) !!}">
-    <meta name="keyword" content="{!! $meta_key !!}">
+    <meta name="description" content="{!! trim(@$meta_des) !!}">
+    <meta name="keyword" content="{!! @$meta_key !!}">
     <meta name="author" content="Web Bits">
     <link rel="shortcut icon" href="/public/favicon.png">
 
-    <title>{{ $title }}</title>
+    <title>{{ @$title }}</title>
 
     <!-- Bootstrap core CSS -->
     {!! HTML::style('public/site/css/font-awesome.css') !!}
@@ -37,12 +37,14 @@
 	
 	@yield('main_content')		
 		<!-- Row partner -->
+    @if(!empty($partner_logo))
 		<div class="show-partner">
 			<div class="container-fluid">
-            {!! @$partner_logo !!}
+            {!! $partner_logo !!}
 			</div>
 		</div>
-	
+	 @endif
+
 	<div class="bottom-block">
 		<div class="container">
 			<h3 class="company-footer">ODI Asia Co., Ltd.</h3>			

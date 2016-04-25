@@ -35,12 +35,7 @@
 
 @section('main_content')
 	<div class="container">
-		<div class="row banner-block">
-			<img src="/public/_images/banner.png" alt="Banner" />
-		</div>
-		<div class="row">
-			{!! Helper::templateTrainingCourse(0, $training_info, $training_info->render()) !!}					        
-		</div>
+		{!! Helper::templateTrainingCourse(0, $training_info, $training_info->render()) !!}	
 	</div>	
 @endsection
 

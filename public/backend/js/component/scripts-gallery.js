@@ -35,6 +35,29 @@
     	$(this).attr('class', 'edit-button');
     });
 
+    $('body').on('click', '.share-gallery', function(){
+    	var gal_id = $(this).attr('id').split('-')[1];
+    	var gal_title = $(this).parent().parent().find('.gallery-title').text();
+
+    	if(gal_id != ''){
+    		$.get('/internal-bkn/share-gallery?gal_id='+ gal_id +'&title='+ gal_title, function(result){
+    			if(result == ''){
+		    		$('#confirm-msg-delete .modal-title').text('No Item of gallery for share');
+		    		$('#confirm-msg-delete .modal-body p').html('<p>There are no gallery item for share. Please add item to your gallery and click on share icon again.</p>');
+		    		$('#confirm-msg-delete .modal-footer').find('#confirm-ok').hide();
+		    		$('#confirm-msg-delete .modal-footer').find('.btn-default').text('Ok');
+		    		$('#confirm-msg-delete').modal('show');
+    			}else{
+		    		$('#confirm-msg-delete .modal-title').text('Generate Link for Gallery Share');
+		    		$('#confirm-msg-delete .modal-body p').html('<p>Select and Copy the link below for sharing your gallery<br/><br/><b>'+ result +'</b></p>');
+		    		$('#confirm-msg-delete .modal-footer').find('#confirm-ok').hide();
+		    		$('#confirm-msg-delete .modal-footer').find('.btn-default').text('Ok');
+		    		$('#confirm-msg-delete').modal('show');
+    			}
+    		});
+    	}
+    });
+
     $('body').on('click', '#new-button', function(){
     	$('#control-title').remove();
     	$('.gallery-title').show();
@@ -238,7 +261,7 @@
     {
     	var row_gallery = '<tr bgcolor="#fed189"><td>&nbsp;</td>';
     		row_gallery += '<td><input type="text" name="edit-title" class="form-control" id="control-title" placeholder="Gallery Title"/></td>';
-    		row_gallery += '<td colspan=5>&nbsp;</td>';
+    		row_gallery += '<td colspan=6>&nbsp;</td>';
     		row_gallery += '</tr>';
 
     	return row_gallery; 

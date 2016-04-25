@@ -161,7 +161,7 @@ return [
         Unisharp\Ckeditor\ServiceProvider::class,
         Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-
+        Chumper\Zipper\ZipperServiceProvider::class,
     ],
 
     /*
@@ -208,6 +208,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Image'     => Intervention\Image\Facades\Image::class,
+        'Zipper'    => Chumper\Zipper\Zipper::class,
         'Form'      => Collective\Html\FormFacade::class,
         'HTML'      => Collective\Html\HtmlFacade::class,
         'AdminHelper' => App\Http\Helpers\AdminHelper::class,

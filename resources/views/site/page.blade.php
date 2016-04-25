@@ -72,7 +72,7 @@
 		</div>	
 	</div>
 	<div class="map">
-		{!! $content->con_remark !!}
+		{!! @$content->con_remark !!}
 	</div>	
 @else
 	<div class="container">

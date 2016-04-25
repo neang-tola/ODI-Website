@@ -73,6 +73,7 @@ class BackendGalleryModel extends Model
         $photo = DB::table('tbl_image')
                     ->select('img_id', 'img_name')
                     ->where('conditional_id', '=', $gal_id)
+                    ->where('conditional_type', '=', 3)
                     ->orderBy('img_id', 'desc')
                     ->get();
 
