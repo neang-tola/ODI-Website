@@ -480,4 +480,85 @@ class SiteModel extends Model
 			return $content;
     	}
     }
+
+	static function findTrainingInfo($keyword=null)
+	{
+		if(!empty($keyword)){
+			
+	    	$training = DB::table('tbl_training_course as t');
+	    	$training->distinct();
+	    	$training->select('t.trc_id', 't.trc_title', 't.trc_content');
+            $training->join('tbl_training_course as tt', 'tt.trc_id', '=', 't.parent_id');
+	    	
+            $training->where('t.trc_status', '=', 1);
+            $training->where('t.parent_id', '>', 0);
+            $training->where('t.customize', '=', 0);
+            $training->whereRaw('t.started_from >= CURDATE()');
+            $training->whereRaw('(t.trc_title LIKE "%'. $keyword .'%" OR fnStripTags(t.trc_content) COLLATE utf8_general_ci LIKE "%'. $keyword .'%")');
+	    	$training->orderBy('t.started_from');
+	    	$result   = $training->get();
+
+	    	return $result;
+		}
+	}
+
+	static function findContentInfo($keyword=null, $lang_id=1)
+	{
+		if(!empty($keyword)){
+			$content = DB::table('tbl_content as c')
+							->distinct()
+							->select('ct.ctt_title', 'ct.ctt_des', 'm.m_link')
+							->join('tbl_content_translate as ct', function($con) use ($lang_id){
+								$con->on('ct.con_id', '=', 'c.con_id');
+								$con->on('ct.lang_id', '=', DB::raw($lang_id));
+								$con->on('c.cnt_id', '=', DB::raw(4));
+							})
+							->join('tbl_menu as m', function($join){
+								$join->on('m.con_id', '=', 'c.con_id');
+							})
+							->whereRaw('ct.ctt_title LIKE "%'. $keyword .'%" OR fnStripTags(ct.ctt_des) COLLATE utf8_general_ci LIKE "%'. $keyword .'%" COLLATE utf8_general_ci')
+							->get();
+
+			return $content;
+		}
+	}
+
+	static function findContentJobInfo($keyword=null)
+	{
+		if(!empty($keyword)){
+	    	$vacancy = DB::table('tbl_job_vacancy as jv')
+	    				->distinct()
+	    				->select('jv.job_id', 'jv.job_title', 'jv.job_des')
+	    				->whereRaw('jv.close_date >= CURDATE() AND (jv.job_title LIKE "%'. $keyword .'%" OR fnStripTags(jv.job_des) COLLATE utf8_general_ci LIKE "%'. $keyword .'%" COLLATE utf8_general_ci)')
+	    				->orderBy('jv.job_id', 'desc')
+	    				->get();
+
+	    	return $vacancy;
+		}
+	}
+
+	static function getEmail()
+	{
+		$user_email = DB::table('tbl_email')
+					  ->select('email_job', 'email_training')
+					  ->where('id', 1)
+					  ->first();
+
+		if(!empty($user_email->email_job)){
+			$job = explode(';', $user_email->email_job);
+		}
+		if(!empty($user_email->email_training)){
+			$training = explode(';', $user_email->email_training);
+		}
+
+		return array('email_job' => array_map('trim', $job), 'email_training' => array_map('trim',$training));
+	}
+
+	public static function getTrainingTitle($trc_id=null)
+	{
+		$training = DB::table('tbl_training_course')->select('trc_title')
+					->where('trc_id', $trc_id)->first();
+
+		return $training->trc_title;
+	}
 }

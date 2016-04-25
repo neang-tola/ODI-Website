@@ -73,9 +73,9 @@ class Helper{
 				if($header == true){
 					$return_result = '
 					<div class="row banner-block">
-						<img src="/public/_images/banner.png" alt="Banner">
+						<img src="/public/_images/banner.png" alt="Banner" />
 					</div>
-					<div class="row">			
+					<div class="row">
 					<div id="tmpTraining" class="table-responsive">
 						<div class="loading"></div>
 						<table class="table visible-lg" id="result_output">
@@ -198,7 +198,7 @@ class Helper{
                 $print_result .= '
 							<tr>
 								<td>'. ++$start .'</td>
-								<td class="title"><a href="/job-detail-'. $url_detail .'">'. $job->job_title .'</a></td>
+								<td class="title"><a href="'. $url_detail .'">'. $job->job_title .'</a></td>
 								<td class="title">'. $job->cat_name .'</td>
 								<td>'. date('d F, Y', strtotime($job->close_date)) .'</td>
 								<td>'. $job->loc_name .'</td>					
@@ -550,6 +550,7 @@ class Helper{
 
 		if(!empty($gallery_id)){
 			$my_gallery= Helper::getGallery($gallery_id);
+
 			if(!empty($my_gallery))
 			{
 				foreach ($my_gallery as $gal) {
@@ -766,5 +767,35 @@ class Helper{
 			return $print_result;
 		}
 	}
+
+	public static function viewDescription($des_val=null, $key_val=null)
+	{
+		$result = '';
+		if(!empty($des_val)){
+			$my_val = stripos($des_val, $key_val);
+			$len_val= strlen($des_val);
+
+			if(!empty($my_val)){
+				if($len_val <= 450){
+					$result = str_ireplace($key_val, '<b>'.$key_val.'</b>', $des_val);
+				}else{
+					$pre_result = substr($des_val, 450, 650);
+					$arr_new    = array_slice(explode(' ', $pre_result), 2);
+					$my_result  = implode(' ', $arr_new);
+					$result = str_ireplace($key_val, '<b>'.$key_val.'</b>', $my_result);
+				}
+			}
+		}
+
+		return $result;
+	}
+
+    public static function base64url_encode($data) {
+      return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+    }
+
+    public static function base64url_decode($data) {
+      return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT));
+    } 
 }	
 

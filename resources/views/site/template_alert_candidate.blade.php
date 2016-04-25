@@ -21,7 +21,7 @@
 	@foreach($result as $row)
 		<tr>
 			<td style="border: 1px solid #dddddd; text-align:center;">{{ ++$ind }}</td>
-			<td style="border: 1px solid #dddddd; padding: 7px 5px;"><a href="http://odi-asia.com/job-detail-{{ $row->job_id .'-'. Helper::encode_title($row->job_title) }}" target="_blank">{{ $row->job_title }}</a> <sup style="color: #00ADEF">New</sup></td>
+			<td style="border: 1px solid #dddddd; padding: 7px 5px;"><a href="{{ url('job-detail-'.$row->job_id .'-'. Helper::encode_title($row->job_title)) }}" target="_blank">{{ $row->job_title }}</a> <sup style="color: #00ADEF">New</sup></td>
 			<td style="border: 1px solid #dddddd; text-align:center; padding: 7px 5px;">{{ date('d F, Y', strtotime($row->close_date)) }}</td>
 			<td style="border: 1px solid #dddddd; text-align:center; padding: 7px 5px;">{{ $row->loc_name }}</td>					
 		</tr>
@@ -34,7 +34,7 @@
 	<br/><br/>
 	<p>Best Regards,<br/>Recruitment Team</p>
 	<br/><br/>
-	<img src="http://odi-asia.com/public/_images/logo-odi.png" />
+	<img src="{{ url('public/_images/logo-odi.png') }}" />
 	<p style="color: #00ADEF;">
 		<strong>Ms. CHEN Rany</strong><br/>
 		Recruitment Department<br/>

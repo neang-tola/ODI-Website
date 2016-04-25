@@ -129,7 +129,9 @@ jQuery(document).ready(function(){
 						$('#result_output tbody').html(result['result']);
 						$('.content-mobile .first').after(result['mobile']);
 
-						$('.clear-result').text('Clear Results');
+						if(title == ''){ $('.clear-result').text('');	}
+						else { $('.clear-result').text('Clear Results');}
+						
 						$('.table-responsive tfoot .footer').hide();
 						$('.mobile-footer').hide();
 					}else{

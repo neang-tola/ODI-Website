@@ -20,11 +20,12 @@
                                 <tr>
                                   <th width="5%">#</th>
                                   <th width="40%">Title</th>
-                                  <th width="15%">Created Date</th>
+                                  <th width="13%">Created Date</th>
                                   <th width="10%">Show Bottom</th>
-                                  <th width="10%">Add Item</th>
-                                  <th width="10%">Edit</th>
-                                  <th width="10%">Delete</th>
+                                  <th width="8%">Add Item</th>
+                                  <th width="8%">Share</th>
+                                  <th width="8%">Edit</th>
+                                  <th width="8%">Delete</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -39,11 +40,12 @@
                                   <td><span class="status-g" id="status-{{ $gal->gal_id }}-0"><i class="active-button"></i></span></td>
                               @endif
                                   <td><i class="gallery-add-button" id="gallery-{{ $gal->gal_id }}"></i></td>
+                                  <td><i class="fa fa-share-square-o share-gallery" id="share-{{ $gal->gal_id }}"></i></td>
                                   <td><i class="edit-button" id="edit-{{ $gal->gal_id }}"></i></td>
                                   <td><i class="del-button" id="del-{{ $gal->gal_id }}"></i></td>
                                 </tr>  
                             @endforeach
-                                <tr><td colspan="7">&nbsp;</td></tr>
+                                <tr><td colspan="8">&nbsp;</td></tr>
                               </tbody>
                             </table>
                           </div>

@@ -28,7 +28,7 @@
 	@foreach($result as $row)
 		<tr>
 			<td style="border: 1px solid #dddddd; text-align:center; padding: 7px 5px;">{{ ++$ind }}</td>
-			<td style="border: 1px solid #dddddd; padding: 5px"><a href="http://odi-asia.com/training-course-detail-{{ $row->trc_id .'-'. Helper::encode_title($row->trc_title) }}" target="_blank">{{ $row->trc_title }}</a></td>
+			<td style="border: 1px solid #dddddd; padding: 5px"><a href="{{ url('training-course-detail-'. $row->trc_id .'-'. Helper::encode_title($row->trc_title)) }}" target="_blank">{{ $row->trc_title }}</a></td>
 			<td style="border: 1px solid #dddddd; text-align:center; padding: 7px 5px;">{{ Helper::training_date($row->started_from, $row->started_to) }}</td>
 			<td style="border: 1px solid #dddddd; text-align:center; padding: 7px 5px;">{{ $row->trc_duration }}</td>
 			<td style="border: 1px solid #dddddd; text-align:center; padding: 7px 5px;">{{ $row->trc_language }}</td>
@@ -43,7 +43,7 @@
 	<br/><br/>
 	<p>Best Regards,<br/>Nisay</p>
 	<br/><br/>
-	<img src="http://odi-asia.com/public/_images/logo-odi.png" />
+	<img src="{{ url('public/_images/logo-odi.png') }}" />
 	<p style="color: #00ADEF;"><strong>Ms. KONG Sennisay</strong><br/>
 		Training Department<br/>
 		Office : +855 23 722 431<br/>

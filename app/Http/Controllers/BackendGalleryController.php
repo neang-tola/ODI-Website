@@ -62,6 +62,7 @@ class BackendGalleryController extends Controller
                                   <td>'. date('d F, Y', strtotime($gal->created_at)) .'</td>
                                   <td>'. $status .'</td>
                                   <td><i class="gallery-add-button" id="gallery-'. $gal->gal_id .'"></i></td>
+                                  <td><i class="fa fa-share-square-o share-gallery" id="share-'. $gal->gal_id .'"></i></td>
                                   <td><i class="edit-button" id="edit-'. $gal->gal_id .'"></i></td>
                                   <td><i class="del-button" id="del-'. $gal->gal_id .'"></i></td>
                                 </tr>
@@ -104,6 +105,7 @@ class BackendGalleryController extends Controller
                                       <td>'. date('d F, Y', strtotime($gal->created_at)) .'</td>
                                       <td>'. $status .'</td>
                                       <td><i class="gallery-add-button" id="gallery-'. $gal->gal_id .'"></i></td>
+                                      <td><i class="fa fa-share-square-o share-gallery" id="share-'. $gal->gal_id .'"></i></td>
                                       <td><i class="edit-button" id="edit-'. $gal->gal_id .'"></i></td>
                                       <td><i class="del-button" id="del-'. $gal->gal_id .'"></i></td>
                                     </tr>
@@ -137,13 +139,14 @@ class BackendGalleryController extends Controller
                                       <td>'. date('d F, Y', strtotime($gal->created_at)) .'</td>
                                       <td>'. $status .'</td>
                                       <td><i class="gallery-add-button" id="gallery-'. $gal->gal_id .'"></i></td>
+                                      <td><i class="fa fa-share-square-o share-gallery" id="share-'. $gal->gal_id .'"></i></td>
                                       <td><i class="edit-button" id="edit-'. $gal->gal_id .'"></i></td>
                                       <td><i class="del-button" id="del-'. $gal->gal_id .'"></i></td>
                                     </tr>
                                 ';
                 endforeach;
             else:
-                $print_result .= '<tr><td colspan="7">
+                $print_result .= '<tr><td colspan="8">
                                     <div class="alert alert-info"><strong>Not found</strong> your key word search not match to Gallery title.</div>
                                  </td></tr>';
             endif;
@@ -164,6 +167,7 @@ class BackendGalleryController extends Controller
                                       <td>'. date('d F, Y', strtotime($gal->created_at)) .'</td>
                                       <td>'. $status .'</td>
                                       <td><i class="gallery-add-button" id="gallery-'. $gal->gal_id .'"></i></td>
+                                      <td><i class="fa fa-share-square-o share-gallery" id="share-'. $gal->gal_id .'"></i></td>
                                       <td><i class="edit-button" id="edit-'. $gal->gal_id .'"></i></td>
                                       <td><i class="del-button" id="del-'. $gal->gal_id .'"></i></td>
                                     </tr>
@@ -172,6 +176,22 @@ class BackendGalleryController extends Controller
         }
 
         echo $print_result;
+    }
+
+    public function share()
+    {
+        $result = '';
+        $gal_id = Input::get('gal_id');
+        $gal_title = Input::get('title');
+
+        if(!empty($gal_id)){
+            $check_item = Gallery::getAllImages($gal_id);
+            if(!empty($check_item)){
+                $encode_url = AdminHelper::base64url_encode('sharegal-'.$gal_id.'-'.$gal_title.'-down');
+                $result = url('/file/share-document?d='.$encode_url);
+            }
+            echo $result;
+        }
     }
 
     public function destroy()

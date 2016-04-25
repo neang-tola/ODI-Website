@@ -159,6 +159,12 @@
                                           </div>
                                       </div>   
                                       <div class="form-group">
+                                          <label for="menuBlock" class="control-label col-lg-2 col-md-4 col-sm-6">Enable Block Search </label>
+                                          <div class="col-lg-6 col-md-4 col-sm-4">
+                                              {!! Form::select('menuBlock', AdminHelper::controlYesNo(), 0, ['class' => 'form-control', 'id' => 'menuBlock']) !!}
+                                          </div>
+                                      </div> 
+                                      <div class="form-group">
                                             <label class="control-label col-lg-2 col-md-4 col-sm-6">Enable menu list</label>
                                             <div class="col-lg-10 col-md-8 col-sm-6">
                                               {!! $menu_list !!}
