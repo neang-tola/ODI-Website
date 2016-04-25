@@ -430,8 +430,8 @@ ul.media-social-odi li:hover a{
 }
 p.copyright{
 	color: #00ADEF;
-	font-size: 14px;
-	padding: 10px 0 0;	
+    font-size: 14px;
+    padding: 10px 0 0;
 }
 footer{
 	margin: 20px 0 0;
@@ -475,7 +475,7 @@ footer{
 .banner{
 	position: relative;
 	overflow: hidden;
-	height: 350px;
+
 }
 .banner-block{
 	/*padding: 15px 20px;*/
@@ -765,11 +765,14 @@ ul.content-table-list li:last-child{
 }
 .show-partner{
 	display: block; 
-	/*margin: 0 0 15px 0;*/
-	padding: 15px 0; 
 	background: #e7f6fd; 
 	width: 100%; 
 	height: auto;
+}
+.box-menu li:hover{
+	margin-top: 5px;
+	transition: all 0.5s;
+	box-shadow: 0px 1px 3px 1px rgba(153, 153, 153, 0.69);
 }
 .bottom-block{
 	background: #00adef;
@@ -1066,7 +1069,12 @@ ul.content-mobile li.mobile-footer{
 .carousel.fdi-Carousel.slide, .carousel.fdi-Carousel.slide .carousel .item{
 	height: auto;
 }
-
+.img-slider img{
+	width: 100%;
+}
+.slick-slide .image {
+    padding: 20px;
+}
 nav.nav-mobile{
     background: #448D12;
     width: 100%;
@@ -1147,9 +1155,21 @@ ul.pagination li:last-child{ display: none; }
 .page-content ul.box-menu li{
 	margin: 12px;
 }
+
+.main-slider{
+	position: relative;
+}
+
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 @media (max-width: 768px) {	
+	.download-block{
+		text-align: center;
+	}
+	.download-block img{
+		max-width: 100%;
+		width: auto;
+	}
 	.caption-img{
 		position: relative;
 	}
@@ -1378,7 +1398,7 @@ ul.pagination li:last-child{ display: none; }
   	padding: 20px 0;
   }
   .navbar-wrapper .logo{
-  	width: 350px;
+  	width: 390px;
   }
   .navbar-wrapper .container {
     padding-right: 15px;
@@ -1535,4 +1555,10 @@ ul.pagination li:last-child{ display: none; }
 }
 .carousel-control.left{
 	background-image: linear-gradient(to right,rgba(0, 173, 239,.5) 0,rgba(0, 173, 239,.0001) 100%);
+}
+
+.logo-partner-slider .slick-slide img
+{
+    display: block;
+    height: 70px;
 }

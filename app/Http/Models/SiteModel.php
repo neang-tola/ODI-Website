@@ -94,48 +94,48 @@ class SiteModel extends Model
 	    	foreach($slideshow as $img){
 		    	if( $ind == 0){
 		    		$li_active 	= 'active';
-			    	if(!empty($img->link_to)){
+/*			    	if(!empty($img->link_to)){
 			    		$link_img   = '<a href="/'. $img->link_to .'"><img src="'. url('public/slideshows/'.$img->img_name) .'" alt="'. $img->img_title .'"></a>';
 			    	}else{
 			    		$link_img   = '<img src="'. url('public/slideshows/'.$img->img_name) .'" alt="'. $img->img_title .'">';
-			    	}
-
-		    		$slide_list .= '
-			        <div class="item active" style="background: url('. url('public/slideshows/'.$img->img_name) .');">
-			        	<div class="container">
-				        	<div class="row">
-						        <div class="col-sm-6 caption-text">
-						        	<div class="">
-						        		'. $img->img_content_l .'
-						        	</div>
-						        </div>
-						        <div class="col-sm-6 caption-img">
-						            <div class="">
-						            	'. $img->img_content_r .'
-						            </div>
-						        </div>
-					        </div>
-				        </div>
-			        </div>';
+			    	}*/
 
 		    	}else{
-		    		$active 	= '';
-		    		$li_active	= '';
-		    		$link_img   = '';
+		    		$li_active = '';
 		    	}
 
-	    		
-	    		// slide navigation
-	    		$nav_list  .= '<li data-target="#mySlider" data-slide-to="'.$ind.'" class="'. $li_active .'">'. $img->img_title .'</li>';
+		    	$slide_list .= '
+							<div style="background: url('. url('public/slideshows/'.$img->img_name) .');">
+								<div class="container">
+									<div class="row">
+										<div class="col-sm-6">
+											<div>
+												'. $img->img_content_l .'
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div>
+												'. $img->img_content_r .'
+											</div> 
+										</div> 
+									</div>			
+								</div>
+							</div>';
 
+	    		// slide navigation
+	    		//$nav_list  .= '<li data-target="#mySlider" data-slide-to="'.$ind.'" class="'. $li_active .'">'. $img->img_title .'</li>';
+	    		$nav_list  .= '<li data-slider="'. $ind .'" class="'. $li_active .'">'. $img->img_title .'</li>';
 	    		$ind++;
 	    	} // End lood slideshow
 	    	
 	    	$print_slide .= '
-			    <div id="mySlider" class="carousel slide" data-ride="carousel">
-			      <div class="carousel-inner" role="listbox">'. $slide_list .'</div>
-				  <ol class="carousel-indicators carousel-indicators-text">'. $nav_list .'</ol>
-			    </div>';
+					<div class="main-slider">	
+					    <div dir="ltr" class="home-sliders">
+			     			'. $slide_list .'
+			     		</div>
+			     		<ol class="carousel-indicators carousel-indicators-text">'. $nav_list .'</ol>
+			     	</div>
+			   ';
 	    	
 	    }
 	    return $print_slide;
@@ -164,13 +164,13 @@ class SiteModel extends Model
 			        <div class="item" style="background: url('. url('public/slideshows/'.$img->img_name) .')">
 			        	<div class="container">
 				        	<div class="row">
-						        <div class="col-sm-6 caption-text">
-						        	<div class="">
+						        <div class="col-sm-6 caption-img">
+						        	<div class="img-slider">
 						        		'. $img->img_content_l .'
 						        	</div>
 						        </div>
-						        <div class="col-sm-6 caption-img">
-						            <div class="">
+						        <div class="col-sm-6 caption-text">
+						            <div class="img-slider">
 						            	'. $img->img_content_r .'
 						            </div>
 						        </div>
@@ -207,7 +207,7 @@ class SiteModel extends Model
 					$active   = '';
 				}
 
-				$li_partner  .= '<li><img src="' .url('public/gallery/thumb/'.$partner->img_name) .'" alt="'. $partner->gal_title .'-'. $i .'"/></li>';
+				$li_partner  .= '<div><img src="' .url('public/gallery/thumb/'.$partner->img_name) .'" alt="'. $partner->gal_title .'-'. $i .'"/></div>';
 
 				if(($i+1) % 2 == 0){
 					if($i == 1){
@@ -225,17 +225,16 @@ class SiteModel extends Model
 				}			
 
 				$partner_list .= '
-	            <li>
-                 <img src="' .url('public/gallery/thumb/'.$partner->img_name) .'" class="img-responsive center-block" alt="'. $partner->gal_title .'-'. $i .'"/>
-             	</li>
+	            <div>
+	            	<div class="image">
+                 	<img src="' .url('public/gallery/thumb/'.$partner->img_name) .'" class="img-responsive center-block" alt="'. $partner->gal_title .'-'. $i .'"/>
+                 	</div>
+             	</div>
 				';
 				$i++;
 			}
 
-			$print_partner = '
-				<div class="slider-container">
-						<ul id="slider"> '. $partner_list .'</ul>
-				</div>';
+			$print_partner = '<div  class="logo-partner-slider"> '. $partner_list .'</div>';
 
 		}
 

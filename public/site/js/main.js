@@ -1,16 +1,38 @@
 $(document).ready(function () {
-	// partner logo
- 	$('#slider').bxSlider({
-		ticker: true,
-		tickerSpeed: 4000,
-		tickerHover: true,
-		slideWidth: 170,
-		maxSlides: 4,
-		minSlides: 2,
-		pause : 1,
-		autoDelay: 2
 
+	// home slider
+	$('.home-sliders').slick({
+		autoplay: true,
+		autoplaySpeed: 5000,
+		ltr: true,
+		prevArrow: '',
+		nextArrow: '',
 	});
+
+    $(".carousel-indicators-text li").click(function(e){
+        e.preventDefault();
+        slideIndex = $(this).index();
+        $( ".home-sliders" ).slick('slickGoTo', parseInt(slideIndex));
+    });
+	
+	$('.home-sliders').on('afterChange', function(event, slick, currentSlide, nextSlide){
+		$(".carousel-indicators-text li.active").removeClass('active');
+		$(".carousel-indicators-text li[data-slider="+currentSlide+"]").addClass('active');
+		
+	});
+
+	// logo partner
+	$('.logo-partner-slider').slick({
+		slidesToShow: 6,
+		slidesToScroll: 1,
+		autoplay: true,
+		autoplaySpeed: 2000,
+		variableWidth: true,
+		prevArrow: '',
+		nextArrow: '',
+	});
+
+
 });
 
 // Touch slide

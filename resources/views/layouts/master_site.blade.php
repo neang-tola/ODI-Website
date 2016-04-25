@@ -16,7 +16,7 @@
     <!-- Bootstrap core CSS -->
     {!! HTML::style('public/site/css/font-awesome.css') !!}
     {!! HTML::style('public/site/css/bootstrap.min.css') !!}
-    {!! HTML::style('public/site/css/style.bxSlider.css') !!}
+    {!! HTML::style('public/site/css/slick.css') !!}
 
     {!! HTML::script('public/site/js/ie-emulation-modes-warning.js') !!}
     {!! HTML::style('public/site/css/odi-site.css') !!}
@@ -64,10 +64,10 @@
       		
 		</div>	
 	</div>
-  <div class="container"><p class="text-center copyright">Copyright &copy; ODI Asia Co., Ltd. All rights reserved.</p></div>
+  <div class="container"><p class="text-center copyright">Copyright &copy; ODI Asia Co., Ltd. All rights reserved. Powered by <a href="http://webits.asia" target="blank">Webits</a></p></div>
     {!! HTML::script('public/site/js/jquery.min.js') !!}
     {!! HTML::script('public/site/js/bootstrap.min.js') !!}
-    {!! HTML::script('public/site/js/jquery.bxSlider.js') !!}
+    {!! HTML::script('public/site/js/slick.min.js') !!}
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     {!! HTML::script('public/site/js/holder.min.js') !!}
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
